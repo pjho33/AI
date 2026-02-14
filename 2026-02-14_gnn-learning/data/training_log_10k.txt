@@ -1,0 +1,401 @@
+======================================================================
+대규모 데이터 준비 (전체)
+======================================================================
+
+데이터 로드 중: data/uspto_official_1k.json
+✓ 10,000개 반응 로드
+
+그래프 변환 중...
+변환:   0%|          | 0/10000 [00:00<?, ?it/s][16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+변환:   2%|▏         | 190/10000 [00:00<00:05, 1895.31it/s][16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+변환:   4%|▍         | 401/10000 [00:00<00:04, 2017.43it/s][16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+변환:   6%|▌         | 603/10000 [00:00<00:04, 1971.22it/s][16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+변환:   8%|▊         | 801/10000 [00:00<00:04, 1929.04it/s]변환:  10%|█         | 1010/10000 [00:00<00:04, 1985.11it/s][16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+변환:  12%|█▏        | 1209/10000 [00:00<00:04, 1863.33it/s][16:50:08] SMILES Parse Error: syntax error while parsing: [CH3]MgCl
+[16:50:08] SMILES Parse Error: check for mistakes around position 6:
+[16:50:08] [CH3]MgCl
+[16:50:08] ~~~~~^
+[16:50:08] SMILES Parse Error: Failed parsing SMILES '[CH3]MgCl' for input: '[CH3]MgCl'
+[16:50:08] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  14%|█▍        | 1397/10000 [00:00<00:07, 1109.24it/s][16:50:09] SMILES Parse Error: syntax error while parsing: Si([CH2][CH2][CH2][NH][CH2][CH2][NH2])(O[CH2]COC)(O[CH2]COC)O[CH2]COC
+[16:50:09] SMILES Parse Error: check for mistakes around position 2:
+[16:50:09] Si([CH2][CH2][CH2][NH][CH2][CH2][NH2])(O[
+[16:50:09] ~^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES 'Si([CH2][CH2][CH2][NH][CH2][CH2][NH2])(O[CH2]COC)(O[CH2]COC)O[CH2]COC' for input: 'Si([CH2][CH2][CH2][NH][CH2][CH2][NH2])(O[CH2]COC)(O[CH2]COC)O[CH2]COC'
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  16%|█▌        | 1567/10000 [00:01<00:06, 1232.00it/s]변환:  17%|█▋        | 1731/10000 [00:01<00:06, 1324.37it/s][16:50:09] SMILES Parse Error: syntax error while parsing: [O-]Cr(O[Cr]([O-])(=O)=O)(=O)=O
+[16:50:09] SMILES Parse Error: check for mistakes around position 6:
+[16:50:09] [O-]Cr(O[Cr]([O-])(=O)=O)(=O)=O
+[16:50:09] ~~~~~^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES '[O-]Cr(O[Cr]([O-])(=O)=O)(=O)=O' for input: '[O-]Cr(O[Cr]([O-])(=O)=O)(=O)=O'
+[16:50:09] SMILES Parse Error: syntax error while parsing: C(Li)CCC
+[16:50:09] SMILES Parse Error: check for mistakes around position 3:
+[16:50:09] C(Li)CCC
+[16:50:09] ~~^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES 'C(Li)CCC' for input: 'C(Li)CCC'
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  19%|█▉        | 1888/10000 [00:01<00:06, 1346.95it/s][16:50:09] SMILES Parse Error: syntax error while parsing: Ca
+[16:50:09] SMILES Parse Error: check for mistakes around position 2:
+[16:50:09] Ca
+[16:50:09] ~^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES 'Ca' for input: 'Ca'
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  21%|██        | 2081/10000 [00:01<00:05, 1494.10it/s][16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] Explicit valence for atom # 0 Cl, 7, is greater than permitted
+[16:50:09] Explicit valence for atom # 6 Cl, 7, is greater than permitted
+[16:50:09] Explicit valence for atom # 0 Cl, 7, is greater than permitted
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  23%|██▎       | 2276/10000 [00:01<00:04, 1612.42it/s][16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] SMILES Parse Error: syntax error while parsing: Rh(Cl)(Cl)Cl
+[16:50:09] SMILES Parse Error: check for mistakes around position 1:
+[16:50:09] Rh(Cl)(Cl)Cl
+[16:50:09] ^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES 'Rh(Cl)(Cl)Cl' for input: 'Rh(Cl)(Cl)Cl'
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  25%|██▍       | 2454/10000 [00:01<00:04, 1658.53it/s][16:50:09] Explicit valence for atom # 2 B, 5, is greater than permitted
+[16:50:09] Explicit valence for atom # 2 B, 5, is greater than permitted
+[16:50:09] Explicit valence for atom # 2 B, 5, is greater than permitted
+[16:50:09] Explicit valence for atom # 2 B, 5, is greater than permitted
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  26%|██▋       | 2629/10000 [00:01<00:04, 1572.48it/s][16:50:09] SMILES Parse Error: syntax error while parsing: [CH3]Si([CH3])([CH3])NSi([CH3])([CH3])[CH3]
+[16:50:09] SMILES Parse Error: check for mistakes around position 7:
+[16:50:09] [CH3]Si([CH3])([CH3])NSi([CH3])([CH3])[CH
+[16:50:09] ~~~~~~^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES '[CH3]Si([CH3])([CH3])NSi([CH3])([CH3])[CH3]' for input: '[CH3]Si([CH3])([CH3])NSi([CH3])([CH3])[CH3]'
+변환:  28%|██▊       | 2822/10000 [00:01<00:04, 1669.95it/s][16:50:09] SMILES Parse Error: syntax error while parsing: Si([O-])([O-])([O-])[O-]
+[16:50:09] SMILES Parse Error: check for mistakes around position 2:
+[16:50:09] Si([O-])([O-])([O-])[O-]
+[16:50:09] ~^
+[16:50:09] SMILES Parse Error: Failed parsing SMILES 'Si([O-])([O-])([O-])[O-]' for input: 'Si([O-])([O-])([O-])[O-]'
+[16:50:09] WARNING: not removing hydrogen atom without neighbors
+변환:  30%|███       | 3010/10000 [00:01<00:04, 1726.79it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+변환:  32%|███▏      | 3188/10000 [00:02<00:04, 1654.13it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] SMILES Parse Error: syntax error while parsing: [CH3]Si([CH3])([CH3])Cl
+[16:50:10] SMILES Parse Error: check for mistakes around position 7:
+[16:50:10] [CH3]Si([CH3])([CH3])Cl
+[16:50:10] ~~~~~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES '[CH3]Si([CH3])([CH3])Cl' for input: '[CH3]Si([CH3])([CH3])Cl'
+[16:50:10] SMILES Parse Error: syntax error while parsing: [CH3]Si([CH3])(C([CH3])([CH3])[CH3])Cl
+[16:50:10] SMILES Parse Error: check for mistakes around position 7:
+[16:50:10] [CH3]Si([CH3])(C([CH3])([CH3])[CH3])Cl
+[16:50:10] ~~~~~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES '[CH3]Si([CH3])(C([CH3])([CH3])[CH3])Cl' for input: '[CH3]Si([CH3])(C([CH3])([CH3])[CH3])Cl'
+변환:  34%|███▎      | 3373/10000 [00:02<00:03, 1708.22it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+변환:  36%|███▌      | 3578/10000 [00:02<00:03, 1804.33it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] WARNING: not removing hydrogen atom without neighbors
+변환:  38%|███▊      | 3772/10000 [00:02<00:03, 1841.40it/s][16:50:10] SMILES Parse Error: syntax error while parsing: Cl[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3]
+[16:50:10] SMILES Parse Error: check for mistakes around position 19:
+[16:50:10] Cl[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][C
+[16:50:10] ~~~~~~~~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES 'Cl[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3]' for input: 'Cl[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3]'
+[16:50:10] SMILES Parse Error: syntax error while parsing: C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C
+[16:50:10] SMILES Parse Error: check for mistakes around position 39:
+[16:50:10] CCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2]
+[16:50:10] ~~~~~~~~~~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: extra open parentheses while parsing: C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C
+[16:50:10] SMILES Parse Error: check for mistakes around position 2:
+[16:50:10] C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O
+[16:50:10] ~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES 'C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C' for input: 'C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C'
+[16:50:10] SMILES Parse Error: syntax error while parsing: C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C
+[16:50:10] SMILES Parse Error: check for mistakes around position 39:
+[16:50:10] CCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2]
+[16:50:10] ~~~~~~~~~~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: extra open parentheses while parsing: C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C
+[16:50:10] SMILES Parse Error: check for mistakes around position 2:
+[16:50:10] C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O
+[16:50:10] ~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES 'C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C' for input: 'C(O[Si](OCC)(OCC)CCCSS[CH2][CH2][CH2]Si(O[CH2][CH3])(O[CH2][CH3])O[CH2][CH3])C'
+[16:50:10] SMILES Parse Error: syntax error while parsing: ClTi(Cl)(Cl)Cl
+[16:50:10] SMILES Parse Error: check for mistakes around position 3:
+[16:50:10] ClTi(Cl)(Cl)Cl
+[16:50:10] ~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES 'ClTi(Cl)(Cl)Cl' for input: 'ClTi(Cl)(Cl)Cl'
+[16:50:10] SMILES Parse Error: syntax error while parsing: [CH2](Si([CH2][CH3])([CH2][CH3])Cl)[CH3]
+[16:50:10] SMILES Parse Error: check for mistakes around position 8:
+[16:50:10] [CH2](Si([CH2][CH3])([CH2][CH3])Cl)[CH3]
+[16:50:10] ~~~~~~~^
+[16:50:10] SMILES Parse Error: extra open parentheses while parsing: [CH2](Si([CH2][CH3])([CH2][CH3])Cl)[CH3]
+[16:50:10] SMILES Parse Error: check for mistakes around position 6:
+[16:50:10] [CH2](Si([CH2][CH3])([CH2][CH3])Cl)[CH3]
+[16:50:10] ~~~~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES '[CH2](Si([CH2][CH3])([CH2][CH3])Cl)[CH3]' for input: '[CH2](Si([CH2][CH3])([CH2][CH3])Cl)[CH3]'
+변환:  40%|████      | 4012/10000 [00:02<00:02, 2002.92it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] SMILES Parse Error: syntax error while parsing: [NH2][CH2]C(ONa)=O
+[16:50:10] SMILES Parse Error: check for mistakes around position 15:
+[16:50:10] [NH2][CH2]C(ONa)=O
+[16:50:10] ~~~~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: extra open parentheses while parsing: [NH2][CH2]C(ONa)=O
+[16:50:10] SMILES Parse Error: check for mistakes around position 12:
+[16:50:10] [NH2][CH2]C(ONa)=O
+[16:50:10] ~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES '[NH2][CH2]C(ONa)=O' for input: '[NH2][CH2]C(ONa)=O'
+[16:50:10] SMILES Parse Error: syntax error while parsing: [NH2][CH2]C(ONa)=O
+[16:50:10] SMILES Parse Error: check for mistakes around position 15:
+[16:50:10] [NH2][CH2]C(ONa)=O
+[16:50:10] ~~~~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: extra open parentheses while parsing: [NH2][CH2]C(ONa)=O
+[16:50:10] SMILES Parse Error: check for mistakes around position 12:
+[16:50:10] [NH2][CH2]C(ONa)=O
+[16:50:10] ~~~~~~~~~~~^
+[16:50:10] SMILES Parse Error: Failed parsing SMILES '[NH2][CH2]C(ONa)=O' for input: '[NH2][CH2]C(ONa)=O'
+변환:  42%|████▏     | 4215/10000 [00:02<00:03, 1904.82it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+변환:  44%|████▍     | 4408/10000 [00:02<00:03, 1844.34it/s][16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] WARNING: not removing hydrogen atom without neighbors
+[16:50:10] WARNING: not removing hydrogen atom without neighbors
+변환:  46%|████▌     | 4595/10000 [00:02<00:02, 1827.37it/s]변환:  48%|████▊     | 4822/10000 [00:02<00:02, 1953.08it/s][16:50:11] SMILES Parse Error: syntax error while parsing: Na
+[16:50:11] SMILES Parse Error: check for mistakes around position 2:
+[16:50:11] Na
+[16:50:11] ~^
+[16:50:11] SMILES Parse Error: Failed parsing SMILES 'Na' for input: 'Na'
+[16:50:11] SMILES Parse Error: syntax error while parsing: Na
+[16:50:11] SMILES Parse Error: check for mistakes around position 2:
+[16:50:11] Na
+[16:50:11] ~^
+[16:50:11] SMILES Parse Error: Failed parsing SMILES 'Na' for input: 'Na'
+변환:  50%|█████     | 5019/10000 [00:02<00:02, 1861.05it/s]변환:  52%|█████▏    | 5207/10000 [00:03<00:02, 1858.18it/s][16:50:11] WARNING: not removing hydrogen atom without neighbors
+변환:  54%|█████▍    | 5395/10000 [00:03<00:02, 1805.18it/s][16:50:11] WARNING: not removing hydrogen atom without neighbors
+변환:  56%|█████▌    | 5584/10000 [00:03<00:02, 1827.97it/s][16:50:11] WARNING: not removing hydrogen atom without neighbors
+변환:  58%|█████▊    | 5768/10000 [00:03<00:02, 1761.56it/s][16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+변환:  59%|█████▉    | 5946/10000 [00:03<00:02, 1651.63it/s][16:50:11] WARNING: not removing hydrogen atom without neighbors
+[16:50:11] WARNING: not removing hydrogen atom without neighbors
+변환:  61%|██████▏   | 6130/10000 [00:03<00:02, 1703.27it/s]변환:  63%|██████▎   | 6302/10000 [00:03<00:02, 1570.27it/s][16:50:11] WARNING: not removing hydrogen atom without neighbors
+변환:  65%|██████▍   | 6473/10000 [00:03<00:02, 1605.26it/s][16:50:12] SMILES Parse Error: syntax error while parsing: [CH2](Al(CC)[CH2][CH3])[CH3]
+[16:50:12] SMILES Parse Error: check for mistakes around position 7:
+[16:50:12] [CH2](Al(CC)[CH2][CH3])[CH3]
+[16:50:12] ~~~~~~^
+[16:50:12] SMILES Parse Error: Failed parsing SMILES '[CH2](Al(CC)[CH2][CH3])[CH3]' for input: '[CH2](Al(CC)[CH2][CH3])[CH3]'
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+변환:  66%|██████▋   | 6640/10000 [00:03<00:02, 1621.10it/s][16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+변환:  68%|██████▊   | 6819/10000 [00:04<00:01, 1668.11it/s][16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+변환:  70%|██████▉   | 6999/10000 [00:04<00:01, 1706.00it/s][16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+변환:  72%|███████▏  | 7171/10000 [00:04<00:01, 1663.39it/s][16:50:12] WARNING: not removing hydrogen atom without neighbors
+변환:  73%|███████▎  | 7344/10000 [00:04<00:01, 1681.67it/s][16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+변환:  75%|███████▌  | 7518/10000 [00:04<00:01, 1696.98it/s][16:50:12] SMILES Parse Error: syntax error while parsing: Si([O-])([O-])([O-])[O-]
+[16:50:12] SMILES Parse Error: check for mistakes around position 2:
+[16:50:12] Si([O-])([O-])([O-])[O-]
+[16:50:12] ~^
+[16:50:12] SMILES Parse Error: Failed parsing SMILES 'Si([O-])([O-])([O-])[O-]' for input: 'Si([O-])([O-])([O-])[O-]'
+변환:  77%|███████▋  | 7689/10000 [00:04<00:01, 1629.91it/s]변환:  79%|███████▊  | 7853/10000 [00:04<00:01, 1538.65it/s][16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] WARNING: not removing hydrogen atom without neighbors
+[16:50:12] SMILES Parse Error: syntax error while parsing: [CH3]Si([CH3])([CH3])Cl
+[16:50:12] SMILES Parse Error: check for mistakes around position 7:
+[16:50:12] [CH3]Si([CH3])([CH3])Cl
+[16:50:12] ~~~~~~^
+[16:50:12] SMILES Parse Error: Failed parsing SMILES '[CH3]Si([CH3])([CH3])Cl' for input: '[CH3]Si([CH3])([CH3])Cl'
+[16:50:12] SMILES Parse Error: syntax error while parsing: [CH3]Si([CH3])([CH3])Cl
+[16:50:12] SMILES Parse Error: check for mistakes around position 7:
+[16:50:12] [CH3]Si([CH3])([CH3])Cl
+[16:50:12] ~~~~~~^
+[16:50:12] SMILES Parse Error: Failed parsing SMILES '[CH3]Si([CH3])([CH3])Cl' for input: '[CH3]Si([CH3])([CH3])Cl'
+변환:  80%|████████  | 8015/10000 [00:04<00:01, 1560.30it/s][16:50:12] SMILES Parse Error: syntax error while parsing: Na
+[16:50:12] SMILES Parse Error: check for mistakes around position 2:
+[16:50:12] Na
+[16:50:12] ~^
+[16:50:12] SMILES Parse Error: Failed parsing SMILES 'Na' for input: 'Na'
+[16:50:13] SMILES Parse Error: syntax error while parsing: C(Li)C[CH2][CH3]
+[16:50:13] SMILES Parse Error: check for mistakes around position 3:
+[16:50:13] C(Li)C[CH2][CH3]
+[16:50:13] ~~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'C(Li)C[CH2][CH3]' for input: 'C(Li)C[CH2][CH3]'
+[16:50:13] SMILES Parse Error: syntax error while parsing: Si([O-])([O-])([O-])[O-]
+[16:50:13] SMILES Parse Error: check for mistakes around position 2:
+[16:50:13] Si([O-])([O-])([O-])[O-]
+[16:50:13] ~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Si([O-])([O-])([O-])[O-]' for input: 'Si([O-])([O-])([O-])[O-]'
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  82%|████████▏ | 8182/10000 [00:04<00:01, 1590.66it/s][16:50:13] SMILES Parse Error: syntax error while parsing: Si(O)(O)(O)[OH]
+[16:50:13] SMILES Parse Error: check for mistakes around position 2:
+[16:50:13] Si(O)(O)(O)[OH]
+[16:50:13] ~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Si(O)(O)(O)[OH]' for input: 'Si(O)(O)(O)[OH]'
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  83%|████████▎ | 8343/10000 [00:05<00:01, 1574.79it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] SMILES Parse Error: syntax error while parsing: Mg
+[16:50:13] SMILES Parse Error: check for mistakes around position 1:
+[16:50:13] Mg
+[16:50:13] ^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Mg' for input: 'Mg'
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  85%|████████▌ | 8521/10000 [00:05<00:00, 1627.85it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  87%|████████▋ | 8711/10000 [00:05<00:00, 1704.21it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  89%|████████▉ | 8883/10000 [00:05<00:00, 1707.51it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] SMILES Parse Error: syntax error while parsing: Na
+[16:50:13] SMILES Parse Error: check for mistakes around position 2:
+[16:50:13] Na
+[16:50:13] ~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Na' for input: 'Na'
+[16:50:13] SMILES Parse Error: syntax error while parsing: Na
+[16:50:13] SMILES Parse Error: check for mistakes around position 2:
+[16:50:13] Na
+[16:50:13] ~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Na' for input: 'Na'
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  91%|█████████ | 9064/10000 [00:05<00:00, 1734.22it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] SMILES Parse Error: syntax error while parsing: [CH3]OSi(OC)(O[CH3])O[CH3]
+[16:50:13] SMILES Parse Error: check for mistakes around position 8:
+[16:50:13] [CH3]OSi(OC)(O[CH3])O[CH3]
+[16:50:13] ~~~~~~~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES '[CH3]OSi(OC)(O[CH3])O[CH3]' for input: '[CH3]OSi(OC)(O[CH3])O[CH3]'
+[16:50:13] SMILES Parse Error: syntax error while parsing: Na
+[16:50:13] SMILES Parse Error: check for mistakes around position 2:
+[16:50:13] Na
+[16:50:13] ~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Na' for input: 'Na'
+[16:50:13] SMILES Parse Error: syntax error while parsing: Rh(Cl)(Cl)Cl
+[16:50:13] SMILES Parse Error: check for mistakes around position 1:
+[16:50:13] Rh(Cl)(Cl)Cl
+[16:50:13] ^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Rh(Cl)(Cl)Cl' for input: 'Rh(Cl)(Cl)Cl'
+변환:  93%|█████████▎| 9263/10000 [00:05<00:00, 1808.67it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  94%|█████████▍| 9445/10000 [00:05<00:00, 1720.43it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  96%|█████████▋| 9635/10000 [00:05<00:00, 1769.36it/s][16:50:13] WARNING: not removing hydrogen atom without neighbors
+[16:50:13] WARNING: not removing hydrogen atom without neighbors
+변환:  98%|█████████▊| 9813/10000 [00:05<00:00, 1765.82it/s][16:50:13] SMILES Parse Error: syntax error while parsing: Cu
+[16:50:13] SMILES Parse Error: check for mistakes around position 2:
+[16:50:13] Cu
+[16:50:13] ~^
+[16:50:13] SMILES Parse Error: Failed parsing SMILES 'Cu' for input: 'Cu'
+변환: 100%|█████████▉| 9991/10000 [00:05<00:00, 1728.91it/s]변환: 100%|██████████| 10000/10000 [00:05<00:00, 1684.28it/s]
+✓ 9,959개 그래프 생성 (41개 실패)
+
+======================================================================
+모델 학습
+======================================================================
+디바이스: cpu
+
+Train: 6,971개
+Val: 1,493개
+Test: 1,495개
+
+모델 파라미터: 28,289
+
+학습 시작...
+Epoch   1/50 | Train Loss: 0.0632 | Val Loss: 0.0019 | Val Acc: 1.000 | Time: 2.3s
+Epoch   2/50 | Train Loss: 0.0009 | Val Loss: 0.0006 | Val Acc: 1.000 | Time: 2.4s
+Epoch   3/50 | Train Loss: 0.0004 | Val Loss: 0.0003 | Val Acc: 1.000 | Time: 2.3s
+Epoch   4/50 | Train Loss: 0.0002 | Val Loss: 0.0002 | Val Acc: 1.000 | Time: 2.4s
+Epoch   5/50 | Train Loss: 0.0001 | Val Loss: 0.0001 | Val Acc: 1.000 | Time: 2.3s
+Epoch   6/50 | Train Loss: 0.0001 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch   7/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch   8/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.3s
+Epoch   9/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  10/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  11/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.3s
+Epoch  12/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  13/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  14/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  15/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  16/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  17/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  18/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  19/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  20/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  21/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  22/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  23/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  24/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  25/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  26/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  27/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  28/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  29/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  30/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.1s
+Epoch  31/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  32/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  33/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  34/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  35/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  36/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  37/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  38/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  39/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  40/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  41/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  42/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  43/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  44/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  45/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  46/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  47/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  48/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  49/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+Epoch  50/50 | Train Loss: 0.0000 | Val Loss: 0.0000 | Val Acc: 1.000 | Time: 2.2s
+
+======================================================================
+최종 평가
+======================================================================
+
+Test Accuracy: 1.000
+모델 저장: data/best_gnn_large.pt
+
+======================================================================
+학습 완료!
+======================================================================
+최종 Test Accuracy: 1.000

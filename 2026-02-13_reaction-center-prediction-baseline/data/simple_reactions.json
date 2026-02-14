@@ -1,0 +1,244 @@
+[
+  {
+    "id": "rxn_001",
+    "name": "ethanol_to_acetaldehyde",
+    "description": "가장 기본적인 1차 알코올 산화",
+    "substrate": {
+      "smiles": "CCO",
+      "name": "ethanol",
+      "iupac": "ethanol",
+      "formula": "C2H6O"
+    },
+    "product": {
+      "smiles": "CC=O",
+      "name": "acetaldehyde",
+      "iupac": "acetaldehyde",
+      "formula": "C2H4O"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "atom_description": "C2 (primary alcohol carbon)",
+      "change_type": "primary_alcohol_to_aldehyde",
+      "bond_changes": [
+        {"atoms": [1, 2], "before": "SINGLE", "after": "DOUBLE"},
+        {"atoms": [1, "H"], "before": "exists", "after": "removed"}
+      ]
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.1",
+      "name": "alcohol dehydrogenase",
+      "specificity": "broad",
+      "km_value": 1.0,
+      "kcat_value": 100,
+      "activity_score": 90,
+      "notes": "일반적인 알코올 산화효소, 광범위 기질 특이성"
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "required": true,
+      "stoichiometry": 1
+    },
+    "reaction_type": "oxidation",
+    "reversible": true,
+    "learning_points": [
+      "1차 알코올은 알데히드로 산화된다",
+      "NAD+가 필수 보조인자",
+      "C-OH 결합이 C=O로 변한다",
+      "수소 하나가 제거된다"
+    ]
+  },
+  
+  {
+    "id": "rxn_002",
+    "name": "isopropanol_to_acetone",
+    "description": "2차 알코올의 케톤 산화",
+    "substrate": {
+      "smiles": "CC(C)O",
+      "name": "2-propanol",
+      "iupac": "propan-2-ol",
+      "formula": "C3H8O"
+    },
+    "product": {
+      "smiles": "CC(C)=O",
+      "name": "acetone",
+      "iupac": "propan-2-one",
+      "formula": "C3H6O"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "atom_description": "C2 (secondary alcohol carbon)",
+      "change_type": "secondary_alcohol_to_ketone",
+      "bond_changes": [
+        {"atoms": [1, 3], "before": "SINGLE", "after": "DOUBLE"}
+      ]
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.1",
+      "name": "alcohol dehydrogenase",
+      "specificity": "broad",
+      "km_value": 2.5,
+      "kcat_value": 85,
+      "activity_score": 85,
+      "notes": "2차 알코올도 산화 가능, 1차보다 약간 느림"
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "required": true,
+      "stoichiometry": 1
+    },
+    "reaction_type": "oxidation",
+    "reversible": true,
+    "learning_points": [
+      "2차 알코올은 케톤으로 산화된다",
+      "1차 알코올과 같은 효소 사용 가능",
+      "알데히드가 아닌 케톤 생성",
+      "반응 속도는 1차보다 약간 느림"
+    ]
+  },
+  
+  {
+    "id": "rxn_003",
+    "name": "glycerol_to_dihydroxyacetone",
+    "description": "여러 OH기 중 특정 위치만 산화",
+    "substrate": {
+      "smiles": "OCC(O)CO",
+      "name": "glycerol",
+      "iupac": "propane-1,2,3-triol",
+      "formula": "C3H8O3"
+    },
+    "product": {
+      "smiles": "OCC(=O)CO",
+      "name": "dihydroxyacetone",
+      "iupac": "1,3-dihydroxypropan-2-one",
+      "formula": "C3H6O3"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "atom_description": "C2 (central secondary alcohol)",
+      "change_type": "secondary_alcohol_to_ketone",
+      "bond_changes": [
+        {"atoms": [1, 3], "before": "SINGLE", "after": "DOUBLE"}
+      ]
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.6",
+      "name": "glycerol dehydrogenase",
+      "specificity": "specific",
+      "km_value": 0.8,
+      "kcat_value": 120,
+      "activity_score": 95,
+      "notes": "글리세롤에 특이적, C2 위치만 선택적 산화"
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "required": true,
+      "stoichiometry": 1
+    },
+    "reaction_type": "oxidation",
+    "reversible": true,
+    "learning_points": [
+      "여러 OH기 중 C2만 선택적 산화",
+      "대칭 분자에서의 위치 선택성",
+      "특이적 효소가 일반 효소보다 효율적",
+      "1차 알코올(C1, C3)은 산화 안 됨"
+    ]
+  },
+  
+  {
+    "id": "rxn_004",
+    "name": "sorbitol_to_fructose",
+    "description": "6탄당 알코올의 선택적 산화",
+    "substrate": {
+      "smiles": "OCC(O)C(O)C(O)C(O)CO",
+      "name": "D-sorbitol",
+      "iupac": "D-glucitol",
+      "formula": "C6H14O6"
+    },
+    "product": {
+      "smiles": "OCC(=O)C(O)C(O)C(O)CO",
+      "name": "D-fructose",
+      "iupac": "D-fructose",
+      "formula": "C6H12O6"
+    },
+    "reaction_center": {
+      "atom_indices": [2],
+      "atom_description": "C2 (secondary alcohol)",
+      "change_type": "secondary_alcohol_to_ketone",
+      "bond_changes": [
+        {"atoms": [2, 7], "before": "SINGLE", "after": "DOUBLE"}
+      ]
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.14",
+      "name": "L-iditol 2-dehydrogenase",
+      "specificity": "high",
+      "km_value": 0.5,
+      "kcat_value": 150,
+      "activity_score": 95,
+      "notes": "소르비톨에 매우 특이적, C2 위치만 산화"
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "required": true,
+      "stoichiometry": 1
+    },
+    "reaction_type": "oxidation",
+    "reversible": true,
+    "learning_points": [
+      "6개 탄소 중 C2만 선택적 산화",
+      "입체화학이 효소 특이성에 중요",
+      "고도로 특이적인 효소 필요",
+      "생물학적 당 합성의 핵심 반응"
+    ]
+  },
+  
+  {
+    "id": "rxn_005",
+    "name": "glucose_to_fructose_isomerization",
+    "description": "알도스-케토스 이성질화 (산화 없음)",
+    "substrate": {
+      "smiles": "OCC(O)C(O)C(O)C(O)C=O",
+      "name": "D-glucose",
+      "iupac": "D-glucose",
+      "formula": "C6H12O6"
+    },
+    "product": {
+      "smiles": "OCC(=O)C(O)C(O)C(O)CO",
+      "name": "D-fructose",
+      "iupac": "D-fructose",
+      "formula": "C6H12O6"
+    },
+    "reaction_center": {
+      "atom_indices": [1, 2],
+      "atom_description": "C1 (aldehyde) and C2 (alcohol)",
+      "change_type": "aldose_ketose_isomerization",
+      "bond_changes": [
+        {"atoms": [1, 6], "before": "DOUBLE", "after": "SINGLE"},
+        {"atoms": [2, 7], "before": "SINGLE", "after": "DOUBLE"}
+      ]
+    },
+    "enzyme": {
+      "ec_number": "5.3.1.5",
+      "name": "glucose-6-phosphate isomerase",
+      "specificity": "specific",
+      "km_value": 0.3,
+      "kcat_value": 200,
+      "activity_score": 98,
+      "notes": "이성질화 효소, 산화환원 없이 구조만 변경"
+    },
+    "cofactor": {
+      "name": "none",
+      "required": false,
+      "stoichiometry": 0
+    },
+    "reaction_type": "isomerization",
+    "reversible": true,
+    "learning_points": [
+      "산화 없이 구조만 변화 (이성질화)",
+      "보조인자 불필요",
+      "알데히드 ⇌ 케톤 전환",
+      "EC 5 (isomerase) 효소 사용",
+      "산화반응과 구분되는 메커니즘"
+    ]
+  }
+]

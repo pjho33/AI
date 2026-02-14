@@ -1,0 +1,86 @@
+[
+  {
+    "rhea_id": "RHEA:10736",
+    "equation": "a primary alcohol + NAD(+) = an aldehyde + NADH + H(+)",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:1.1.1.1;EC:1.1.1.71"
+      ],
+      "primary_ec": "EC:1.1.1.1;EC:1.1.1.71"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:10740",
+    "equation": "a secondary alcohol + NAD(+) = a ketone + NADH + H(+)",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:1.1.1.1"
+      ],
+      "primary_ec": "EC:1.1.1.1"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:25290",
+    "equation": "ethanol + NAD(+) = acetaldehyde + NADH + H(+)",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:1.1.1.1"
+      ],
+      "primary_ec": "EC:1.1.1.1"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:13769",
+    "equation": "glycerol + NAD(+) = dihydroxyacetone + NADH + H(+)",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:1.1.1.6"
+      ],
+      "primary_ec": "EC:1.1.1.6"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:10160",
+    "equation": "L-iditol + NAD(+) = keto-L-sorbose + NADH + H(+)",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:1.1.1.14"
+      ],
+      "primary_ec": "EC:1.1.1.14"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:33031",
+    "equation": "keto-D-fructose + NADH + H(+) = D-sorbitol + NAD(+)",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:1.1.1.14"
+      ],
+      "primary_ec": "EC:1.1.1.14"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  }
+]

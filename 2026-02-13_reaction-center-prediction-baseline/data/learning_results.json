@@ -1,0 +1,44 @@
+{
+  "training_reactions": 5,
+  "learned_patterns": 3,
+  "top1_accuracy": 80.0,
+  "top5_accuracy": 100.0,
+  "patterns": {
+    "primary_alcohol_to_aldehyde": [
+      {
+        "substrate": "CCO",
+        "product": "CC=O",
+        "enzyme": "1.1.1.1",
+        "cofactor": "NAD+"
+      }
+    ],
+    "secondary_alcohol_to_ketone": [
+      {
+        "substrate": "CC(C)O",
+        "product": "CC(C)=O",
+        "enzyme": "1.1.1.1",
+        "cofactor": "NAD+"
+      },
+      {
+        "substrate": "OCC(O)CO",
+        "product": "OCC(=O)CO",
+        "enzyme": "1.1.1.6",
+        "cofactor": "NAD+"
+      },
+      {
+        "substrate": "OCC(O)C(O)C(O)C(O)CO",
+        "product": "OCC(=O)C(O)C(O)C(O)CO",
+        "enzyme": "1.1.1.14",
+        "cofactor": "NAD+"
+      }
+    ],
+    "aldose_ketose_isomerization": [
+      {
+        "substrate": "OCC(O)C(O)C(O)C(O)C=O",
+        "product": "OCC(=O)C(O)C(O)C(O)CO",
+        "enzyme": "5.3.1.5",
+        "cofactor": "none"
+      }
+    ]
+  }
+}

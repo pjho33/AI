@@ -1,0 +1,30 @@
+# Large data files
+data/*.rsmi
+data/*.7z
+data/*_1m.json
+data/1976_Sep2016_USPTOgrants_smiles.rsmi
+data/1976_Sep2016_USPTOgrants_smiles.7z
+data/uspto_official_1m.json
+
+# Large model files (>50MB)
+data/*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

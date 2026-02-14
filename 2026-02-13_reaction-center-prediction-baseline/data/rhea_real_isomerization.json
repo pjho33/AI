@@ -1,0 +1,58 @@
+[
+  {
+    "rhea_id": "RHEA:22816",
+    "equation": "alpha-D-xylose = alpha-D-xylulofuranose",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:5.3.1.5"
+      ],
+      "primary_ec": "EC:5.3.1.5"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:28546",
+    "equation": "alpha-D-glucose = alpha-D-fructose",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:5.3.1.5"
+      ],
+      "primary_ec": "EC:5.3.1.5"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:11816",
+    "equation": "alpha-D-glucose 6-phosphate = beta-D-fructose 6-phosphate",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:5.3.1.9"
+      ],
+      "primary_ec": "EC:5.3.1.9"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  },
+  {
+    "rhea_id": "RHEA:85579",
+    "equation": "alpha-D-fructose 6-phosphate = beta-D-fructose 6-phosphate",
+    "reaction_type": "unknown",
+    "enzyme": {
+      "ec_numbers": [
+        "EC:5.3.1.9"
+      ],
+      "primary_ec": "EC:5.3.1.9"
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea"
+  }
+]

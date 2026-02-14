@@ -1,0 +1,502 @@
+[
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 0
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 1
+  },
+  {
+    "reactants": "CC(C)O",
+    "products": "CC(C)=O",
+    "index": 2
+  },
+  {
+    "reactants": "CCCCO",
+    "products": "CCCC=O",
+    "index": 3
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 4
+  },
+  {
+    "reactants": "CC(=O)O.CCCO",
+    "products": "CC(=OCCC)OCCC",
+    "index": 5
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 6
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 7
+  },
+  {
+    "reactants": "CCC(=O)O.CCO",
+    "products": "CCC(=OCC)OCC",
+    "index": 8
+  },
+  {
+    "reactants": "CCC(=O)O.CCCO",
+    "products": "CCC(=OCCC)OCCC",
+    "index": 9
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 10
+  },
+  {
+    "reactants": "CCC(=O)O.CCCCO",
+    "products": "CCC(=OCCCC)OCCCC",
+    "index": 11
+  },
+  {
+    "reactants": "CC=O",
+    "products": "CCO",
+    "index": 12
+  },
+  {
+    "reactants": "CCC=O",
+    "products": "CCCO",
+    "index": 13
+  },
+  {
+    "reactants": "CC(=O)C",
+    "products": "CC(O)C",
+    "index": 14
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 15
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 16
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 17
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 18
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 19
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 20
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 21
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 22
+  },
+  {
+    "reactants": "CCC(=O)O.CCO",
+    "products": "CCC(=OCC)OCC",
+    "index": 23
+  },
+  {
+    "reactants": "CCCCO",
+    "products": "CCCC=O",
+    "index": 24
+  },
+  {
+    "reactants": "CC=O",
+    "products": "CCO",
+    "index": 25
+  },
+  {
+    "reactants": "CC=O",
+    "products": "CCO",
+    "index": 26
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 27
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 28
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 29
+  },
+  {
+    "reactants": "CC(=O)O.CCCO",
+    "products": "CC(=OCCC)OCCC",
+    "index": 30
+  },
+  {
+    "reactants": "CC(C)O",
+    "products": "CC(C)=O",
+    "index": 31
+  },
+  {
+    "reactants": "CCC(=O)O.CCO",
+    "products": "CCC(=OCC)OCC",
+    "index": 32
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 33
+  },
+  {
+    "reactants": "CC(=O)O.CCCO",
+    "products": "CC(=OCCC)OCCC",
+    "index": 34
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 35
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 36
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 37
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 38
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 39
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 40
+  },
+  {
+    "reactants": "CCCCO",
+    "products": "CCCC=O",
+    "index": 41
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 42
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 43
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 44
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 45
+  },
+  {
+    "reactants": "CC(C)O",
+    "products": "CC(C)=O",
+    "index": 46
+  },
+  {
+    "reactants": "CCC(=O)O.CCCCO",
+    "products": "CCC(=OCCCC)OCCCC",
+    "index": 47
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 48
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 49
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 50
+  },
+  {
+    "reactants": "CCC(=O)O.CCCO",
+    "products": "CCC(=OCCC)OCCC",
+    "index": 51
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 52
+  },
+  {
+    "reactants": "CCC(=O)O.CCCO",
+    "products": "CCC(=OCCC)OCCC",
+    "index": 53
+  },
+  {
+    "reactants": "CCC=O",
+    "products": "CCCO",
+    "index": 54
+  },
+  {
+    "reactants": "CCC(=O)O.CCO",
+    "products": "CCC(=OCC)OCC",
+    "index": 55
+  },
+  {
+    "reactants": "CC(=O)C",
+    "products": "CC(O)C",
+    "index": 56
+  },
+  {
+    "reactants": "CC=O",
+    "products": "CCO",
+    "index": 57
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 58
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 59
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 60
+  },
+  {
+    "reactants": "CCC=O",
+    "products": "CCCO",
+    "index": 61
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 62
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 63
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 64
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 65
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 66
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 67
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 68
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 69
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 70
+  },
+  {
+    "reactants": "CCC(=O)O.CCO",
+    "products": "CCC(=OCC)OCC",
+    "index": 71
+  },
+  {
+    "reactants": "CCC(=O)O.CCCO",
+    "products": "CCC(=OCCC)OCCC",
+    "index": 72
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 73
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 74
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 75
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 76
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 77
+  },
+  {
+    "reactants": "CC(=O)C",
+    "products": "CC(O)C",
+    "index": 78
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 79
+  },
+  {
+    "reactants": "CC(=O)O.CCCO",
+    "products": "CC(=OCCC)OCCC",
+    "index": 80
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 81
+  },
+  {
+    "reactants": "CCC=O",
+    "products": "CCCO",
+    "index": 82
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 83
+  },
+  {
+    "reactants": "CC(=O)O.CC(C)O",
+    "products": "CC(=OCC(C))OCC(C)",
+    "index": 84
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 85
+  },
+  {
+    "reactants": "CC(=O)O.CCCCO",
+    "products": "CC(=OCCCC)OCCCC",
+    "index": 86
+  },
+  {
+    "reactants": "CC=O",
+    "products": "CCO",
+    "index": 87
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 88
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 89
+  },
+  {
+    "reactants": "CCO",
+    "products": "CC=O",
+    "index": 90
+  },
+  {
+    "reactants": "CCC(=O)O.CCO",
+    "products": "CCC(=OCC)OCC",
+    "index": 91
+  },
+  {
+    "reactants": "CCC(=O)O.CCCCO",
+    "products": "CCC(=OCCCC)OCCCC",
+    "index": 92
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 93
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 94
+  },
+  {
+    "reactants": "CCC(=O)O.CC(C)O",
+    "products": "CCC(=OCC(C))OCC(C)",
+    "index": 95
+  },
+  {
+    "reactants": "CCCO",
+    "products": "CCC=O",
+    "index": 96
+  },
+  {
+    "reactants": "CCCCO",
+    "products": "CCCC=O",
+    "index": 97
+  },
+  {
+    "reactants": "CC(=O)O.CCO",
+    "products": "CC(=OCC)OCC",
+    "index": 98
+  },
+  {
+    "reactants": "CCC(=O)O.CCCCO",
+    "products": "CCC(=OCCCC)OCCCC",
+    "index": 99
+  }
+]

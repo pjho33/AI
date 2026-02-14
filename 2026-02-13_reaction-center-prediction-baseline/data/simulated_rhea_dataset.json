@@ -1,0 +1,329 @@
+[
+  {
+    "rhea_id": "RHEA:10000",
+    "substrate": {
+      "chebi_id": "CHEBI:16236",
+      "name": "ethanol",
+      "smiles": "CCO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 7.4,
+      "temperature": 37
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10001",
+    "substrate": {
+      "chebi_id": "CHEBI:17522",
+      "name": "2-propanol",
+      "smiles": "CC(C)O"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 7.0,
+      "temperature": 30
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10002",
+    "substrate": {
+      "chebi_id": "CHEBI:17754",
+      "name": "glycerol",
+      "smiles": "OCC(O)CO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.6"],
+      "primary_ec": "1.1.1.6"
+    },
+    "conditions": {
+      "pH": 8.0,
+      "temperature": 30
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10003",
+    "substrate": {
+      "chebi_id": "CHEBI:17924",
+      "name": "D-sorbitol",
+      "smiles": "OCC(O)C(O)C(O)C(O)CO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.14"],
+      "primary_ec": "1.1.1.14"
+    },
+    "conditions": {
+      "pH": 7.4,
+      "temperature": 37
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10004",
+    "substrate": {
+      "chebi_id": "CHEBI:17634",
+      "name": "D-glucose",
+      "smiles": "OCC(O)C(O)C(O)C(O)C=O"
+    },
+    "reaction_type": "isomerization",
+    "enzyme": {
+      "ec_numbers": ["5.3.1.5"],
+      "primary_ec": "5.3.1.5"
+    },
+    "conditions": {
+      "pH": 7.5,
+      "temperature": 37
+    },
+    "feasibility_label": true,
+    "confidence": 0.95,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10005",
+    "substrate": {
+      "chebi_id": "CHEBI:17895",
+      "name": "xylitol",
+      "smiles": "OCC(O)C(O)C(O)CO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.9"],
+      "primary_ec": "1.1.1.9"
+    },
+    "conditions": {
+      "pH": 7.0,
+      "temperature": 30
+    },
+    "feasibility_label": true,
+    "confidence": 0.90,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10006",
+    "substrate": {
+      "chebi_id": "CHEBI:16236",
+      "name": "ethanol",
+      "smiles": "CCO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["5.3.1.5"],
+      "primary_ec": "5.3.1.5"
+    },
+    "conditions": {
+      "pH": 7.4,
+      "temperature": 37
+    },
+    "feasibility_label": false,
+    "confidence": 0.90,
+    "source": "rhea_simulated",
+    "reason": "enzyme_mismatch"
+  },
+  {
+    "rhea_id": "RHEA:10007",
+    "substrate": {
+      "chebi_id": "CHEBI:17522",
+      "name": "2-propanol",
+      "smiles": "CC(C)O"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 3.0,
+      "temperature": 37
+    },
+    "feasibility_label": false,
+    "confidence": 0.85,
+    "source": "rhea_simulated",
+    "reason": "extreme_pH"
+  },
+  {
+    "rhea_id": "RHEA:10008",
+    "substrate": {
+      "chebi_id": "CHEBI:17754",
+      "name": "glycerol",
+      "smiles": "OCC(O)CO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.6"],
+      "primary_ec": "1.1.1.6"
+    },
+    "conditions": {
+      "pH": 7.0,
+      "temperature": 80
+    },
+    "feasibility_label": false,
+    "confidence": 0.85,
+    "source": "rhea_simulated",
+    "reason": "extreme_temperature"
+  },
+  {
+    "rhea_id": "RHEA:10009",
+    "substrate": {
+      "chebi_id": "CHEBI:17634",
+      "name": "D-glucose",
+      "smiles": "OCC(O)C(O)C(O)C(O)C=O"
+    },
+    "reaction_type": "isomerization",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 7.5,
+      "temperature": 37
+    },
+    "feasibility_label": false,
+    "confidence": 0.90,
+    "source": "rhea_simulated",
+    "reason": "enzyme_mismatch"
+  },
+  {
+    "rhea_id": "RHEA:10010",
+    "substrate": {
+      "chebi_id": "CHEBI:15343",
+      "name": "1-butanol",
+      "smiles": "CCCCO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 7.4,
+      "temperature": 37
+    },
+    "feasibility_label": true,
+    "confidence": 0.90,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10011",
+    "substrate": {
+      "chebi_id": "CHEBI:16236",
+      "name": "ethanol",
+      "smiles": "CCO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 11.0,
+      "temperature": 37
+    },
+    "feasibility_label": false,
+    "confidence": 0.85,
+    "source": "rhea_simulated",
+    "reason": "extreme_pH"
+  },
+  {
+    "rhea_id": "RHEA:10012",
+    "substrate": {
+      "chebi_id": "CHEBI:17895",
+      "name": "xylitol",
+      "smiles": "OCC(O)C(O)C(O)CO"
+    },
+    "reaction_type": "isomerization",
+    "enzyme": {
+      "ec_numbers": ["5.3.1.5"],
+      "primary_ec": "5.3.1.5"
+    },
+    "conditions": {
+      "pH": 7.0,
+      "temperature": 30
+    },
+    "feasibility_label": true,
+    "confidence": 0.85,
+    "source": "rhea_simulated"
+  },
+  {
+    "rhea_id": "RHEA:10013",
+    "substrate": {
+      "chebi_id": "CHEBI:17924",
+      "name": "D-sorbitol",
+      "smiles": "OCC(O)C(O)C(O)C(O)CO"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.14"],
+      "primary_ec": "1.1.1.14"
+    },
+    "conditions": {
+      "pH": 4.0,
+      "temperature": 37
+    },
+    "feasibility_label": false,
+    "confidence": 0.85,
+    "source": "rhea_simulated",
+    "reason": "extreme_pH"
+  },
+  {
+    "rhea_id": "RHEA:10014",
+    "substrate": {
+      "chebi_id": "CHEBI:17522",
+      "name": "2-propanol",
+      "smiles": "CC(C)O"
+    },
+    "reaction_type": "oxidation",
+    "enzyme": {
+      "ec_numbers": ["1.1.1.1"],
+      "primary_ec": "1.1.1.1"
+    },
+    "conditions": {
+      "pH": 7.0,
+      "temperature": 4
+    },
+    "feasibility_label": false,
+    "confidence": 0.80,
+    "source": "rhea_simulated",
+    "reason": "extreme_temperature"
+  },
+  {
+    "rhea_id": "RHEA:10015",
+    "substrate": {
+      "chebi_id": "CHEBI:17754",
+      "name": "glycerol",
+      "smiles": "OCC(O)CO"
+    },
+    "reaction_type": "isomerization",
+    "enzyme": {
+      "ec_numbers": ["5.3.1.5"],
+      "primary_ec": "5.3.1.5"
+    },
+    "conditions": {
+      "pH": 7.5,
+      "temperature": 30
+    },
+    "feasibility_label": true,
+    "confidence": 0.80,
+    "source": "rhea_simulated"
+  }
+]

@@ -1,0 +1,379 @@
+[
+  {
+    "id": "rxn_001_physiological",
+    "name": "ethanol_oxidation_physiological",
+    "description": "생리적 조건에서 에탄올 산화",
+    "substrate": {
+      "smiles": "CCO",
+      "name": "ethanol",
+      "formula": "C2H6O"
+    },
+    "product": {
+      "smiles": "CC=O",
+      "name": "acetaldehyde",
+      "formula": "C2H4O"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "change_type": "primary_alcohol_to_aldehyde"
+    },
+    "reaction_conditions": {
+      "pH": 7.4,
+      "temperature": 37,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 0.15,
+      "buffer": "phosphate"
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.1",
+      "name": "alcohol dehydrogenase",
+      "optimal_pH": 7.5,
+      "optimal_temp": 37,
+      "activity_at_conditions": 95
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 1.0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 100,
+      "Km": 1.0,
+      "kcat_Km": 100
+    },
+    "reaction_type": "oxidation"
+  },
+  
+  {
+    "id": "rxn_001_acidic",
+    "name": "ethanol_oxidation_acidic",
+    "description": "산성 조건에서 에탄올 산화 (효소 활성 감소)",
+    "substrate": {
+      "smiles": "CCO",
+      "name": "ethanol",
+      "formula": "C2H6O"
+    },
+    "product": {
+      "smiles": "CC=O",
+      "name": "acetaldehyde",
+      "formula": "C2H4O"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "change_type": "primary_alcohol_to_aldehyde"
+    },
+    "reaction_conditions": {
+      "pH": 5.0,
+      "temperature": 37,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 0.15,
+      "buffer": "acetate"
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.1",
+      "name": "alcohol dehydrogenase",
+      "optimal_pH": 7.5,
+      "optimal_temp": 37,
+      "activity_at_conditions": 40
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 1.0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 40,
+      "Km": 2.5,
+      "kcat_Km": 16
+    },
+    "reaction_type": "oxidation",
+    "notes": "pH 5에서 효소 활성 60% 감소"
+  },
+  
+  {
+    "id": "rxn_002_cold",
+    "name": "isopropanol_oxidation_cold",
+    "description": "저온에서 2-프로판올 산화 (반응 느림)",
+    "substrate": {
+      "smiles": "CC(C)O",
+      "name": "2-propanol",
+      "formula": "C3H8O"
+    },
+    "product": {
+      "smiles": "CC(C)=O",
+      "name": "acetone",
+      "formula": "C3H6O"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "change_type": "secondary_alcohol_to_ketone"
+    },
+    "reaction_conditions": {
+      "pH": 7.4,
+      "temperature": 4,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 0.15,
+      "buffer": "phosphate"
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.1",
+      "name": "alcohol dehydrogenase",
+      "optimal_pH": 7.5,
+      "optimal_temp": 37,
+      "activity_at_conditions": 15
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 1.0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 13,
+      "Km": 5.0,
+      "kcat_Km": 2.6
+    },
+    "reaction_type": "oxidation",
+    "notes": "4°C에서 반응 속도 85% 감소"
+  },
+  
+  {
+    "id": "rxn_003_optimal",
+    "name": "glycerol_oxidation_optimal",
+    "description": "최적 조건에서 글리세롤 산화",
+    "substrate": {
+      "smiles": "OCC(O)CO",
+      "name": "glycerol",
+      "formula": "C3H8O3"
+    },
+    "product": {
+      "smiles": "OCC(=O)CO",
+      "name": "dihydroxyacetone",
+      "formula": "C3H6O3"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "change_type": "secondary_alcohol_to_ketone"
+    },
+    "reaction_conditions": {
+      "pH": 8.0,
+      "temperature": 30,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 0.1,
+      "buffer": "tris"
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.6",
+      "name": "glycerol dehydrogenase",
+      "optimal_pH": 8.0,
+      "optimal_temp": 30,
+      "activity_at_conditions": 100
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 2.0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 120,
+      "Km": 0.8,
+      "kcat_Km": 150
+    },
+    "reaction_type": "oxidation",
+    "notes": "최적 조건, 최대 활성"
+  },
+  
+  {
+    "id": "rxn_004_high_salt",
+    "name": "sorbitol_oxidation_high_salt",
+    "description": "고염 조건에서 소르비톨 산화 (활성 감소)",
+    "substrate": {
+      "smiles": "OCC(O)C(O)C(O)C(O)CO",
+      "name": "D-sorbitol",
+      "formula": "C6H14O6"
+    },
+    "product": {
+      "smiles": "OCC(=O)C(O)C(O)C(O)CO",
+      "name": "D-fructose",
+      "formula": "C6H12O6"
+    },
+    "reaction_center": {
+      "atom_indices": [2],
+      "change_type": "secondary_alcohol_to_ketone"
+    },
+    "reaction_conditions": {
+      "pH": 7.4,
+      "temperature": 37,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 1.0,
+      "buffer": "phosphate",
+      "NaCl": 0.8
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.14",
+      "name": "L-iditol 2-dehydrogenase",
+      "optimal_pH": 7.5,
+      "optimal_temp": 37,
+      "activity_at_conditions": 60
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 1.0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 90,
+      "Km": 1.2,
+      "kcat_Km": 75
+    },
+    "reaction_type": "oxidation",
+    "notes": "고염(0.8M NaCl)에서 효소-기질 결합 약화"
+  },
+  
+  {
+    "id": "rxn_005_organic_solvent",
+    "name": "glucose_isomerization_organic",
+    "description": "유기용매 혼합 조건 (효소 불안정)",
+    "substrate": {
+      "smiles": "OCC(O)C(O)C(O)C(O)C=O",
+      "name": "D-glucose",
+      "formula": "C6H12O6"
+    },
+    "product": {
+      "smiles": "OCC(=O)C(O)C(O)C(O)CO",
+      "name": "D-fructose",
+      "formula": "C6H12O6"
+    },
+    "reaction_center": {
+      "atom_indices": [1, 2],
+      "change_type": "aldose_ketose_isomerization"
+    },
+    "reaction_conditions": {
+      "pH": 7.0,
+      "temperature": 25,
+      "temperature_unit": "celsius",
+      "solvent": "water:ethanol (80:20)",
+      "ionic_strength": 0.15,
+      "buffer": "phosphate"
+    },
+    "enzyme": {
+      "ec_number": "5.3.1.5",
+      "name": "glucose-6-phosphate isomerase",
+      "optimal_pH": 7.5,
+      "optimal_temp": 37,
+      "activity_at_conditions": 25
+    },
+    "cofactor": {
+      "name": "none",
+      "concentration": 0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 50,
+      "Km": 1.5,
+      "kcat_Km": 33
+    },
+    "reaction_type": "isomerization",
+    "notes": "20% 에탄올 존재시 효소 활성 75% 감소"
+  },
+  
+  {
+    "id": "rxn_006_low_cofactor",
+    "name": "ethanol_oxidation_low_NAD",
+    "description": "낮은 NAD+ 농도 (기질 제한)",
+    "substrate": {
+      "smiles": "CCO",
+      "name": "ethanol",
+      "formula": "C2H6O"
+    },
+    "product": {
+      "smiles": "CC=O",
+      "name": "acetaldehyde",
+      "formula": "C2H4O"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "change_type": "primary_alcohol_to_aldehyde"
+    },
+    "reaction_conditions": {
+      "pH": 7.4,
+      "temperature": 37,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 0.15,
+      "buffer": "phosphate"
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.1",
+      "name": "alcohol dehydrogenase",
+      "optimal_pH": 7.5,
+      "optimal_temp": 37,
+      "activity_at_conditions": 95
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 0.05,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 100,
+      "Km": 1.0,
+      "kcat_Km": 100,
+      "apparent_rate": 30
+    },
+    "reaction_type": "oxidation",
+    "notes": "NAD+ 농도 낮아서 반응 속도 70% 감소"
+  },
+  
+  {
+    "id": "rxn_007_metal_activated",
+    "name": "glycerol_oxidation_Mg_activated",
+    "description": "Mg2+ 활성화 조건",
+    "substrate": {
+      "smiles": "OCC(O)CO",
+      "name": "glycerol",
+      "formula": "C3H8O3"
+    },
+    "product": {
+      "smiles": "OCC(=O)CO",
+      "name": "dihydroxyacetone",
+      "formula": "C3H6O3"
+    },
+    "reaction_center": {
+      "atom_indices": [1],
+      "change_type": "secondary_alcohol_to_ketone"
+    },
+    "reaction_conditions": {
+      "pH": 8.0,
+      "temperature": 30,
+      "temperature_unit": "celsius",
+      "solvent": "water",
+      "ionic_strength": 0.1,
+      "buffer": "tris",
+      "Mg2+": 5.0
+    },
+    "enzyme": {
+      "ec_number": "1.1.1.6",
+      "name": "glycerol dehydrogenase",
+      "optimal_pH": 8.0,
+      "optimal_temp": 30,
+      "activity_at_conditions": 120
+    },
+    "cofactor": {
+      "name": "NAD+",
+      "concentration": 2.0,
+      "unit": "mM"
+    },
+    "kinetics": {
+      "kcat": 144,
+      "Km": 0.6,
+      "kcat_Km": 240
+    },
+    "reaction_type": "oxidation",
+    "notes": "Mg2+ 5mM 존재시 활성 20% 증가"
+  }
+]
