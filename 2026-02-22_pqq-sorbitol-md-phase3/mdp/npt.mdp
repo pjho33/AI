@@ -1,0 +1,56 @@
+; npt.mdp - NPT Equilibration (300K, 1bar, 100ps)
+integrator              = md
+nsteps                  = 50000      ; 100 ps
+dt                      = 0.002      ; 2 fs
+
+; Output
+nstxout                 = 500
+nstvout                 = 500
+nstenergy               = 500
+nstlog                  = 500
+
+; Bond constraints
+continuation            = yes
+constraint_algorithm    = lincs
+constraints             = h-bonds
+lincs_iter              = 1
+lincs_order             = 4
+
+; Neighborsearching
+cutoff-scheme           = Verlet
+ns_type                 = grid
+nstlist                 = 20
+rcoulomb                = 1.2
+rvdw                    = 1.2
+
+; Electrostatics
+coulombtype             = PME
+pme_order               = 4
+fourierspacing          = 0.16
+
+; VdW
+vdwtype                 = Cut-off
+DispCorr                = EnerPres
+
+; Temperature coupling
+tcoupl                  = V-rescale
+tc-grps                 = Protein      non-Protein
+tau_t                   = 0.1         0.1
+ref_t                   = 300         300
+
+; Pressure coupling
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = isotropic
+tau_p                   = 2.0
+ref_p                   = 1.0
+compressibility         = 4.5e-5
+refcoord_scaling        = com
+
+; PBC
+pbc                     = xyz
+
+; Velocity generation
+gen_vel                 = no
+
+; Position restraints
+define                  = -DPOSRES

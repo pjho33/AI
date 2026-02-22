@@ -1,0 +1,64 @@
+; Production MD - Long Run (100-200 ns)
+; For top selected poses
+; Option 1: Weak PQQ restraints (recommended for initial runs)
+; Option 2: No PQQ restraints (test stability)
+
+; Uncomment one of these:
+define                   = -DPOSRES_PQQ_WEAK -DPOSRES_CA  ; Weak restraints
+;define                   = -DPOSRES_CA                     ; No PQQ restraints
+
+integrator               = md
+dt                       = 0.002        ; 2 fs
+nsteps                   = 50000000     ; 100 ns (for 200 ns: 100000000)
+
+; Output control
+nstlog                   = 10000
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstxout-compressed       = 10000        ; Save every 20 ps
+compressed-x-grps        = System
+nstenergy                = 10000
+
+; Neighbor searching
+cutoff-scheme            = Verlet
+nstlist                  = 10
+ns_type                  = grid
+pbc                      = xyz
+rlist                    = 1.2
+
+; Electrostatics
+coulombtype              = PME
+rcoulomb                 = 1.2
+pme_order                = 4
+fourierspacing           = 0.12
+
+; van der Waals
+vdwtype                  = Cut-off
+rvdw                     = 1.2
+DispCorr                 = EnerPres
+
+; Temperature coupling
+tcoupl                   = V-rescale
+tc-grps                  = Protein Non-Protein
+tau_t                    = 0.1 0.1
+ref_t                    = 300 300
+
+; Pressure coupling
+pcoupl                   = Parrinello-Rahman
+pcoupltype               = isotropic
+tau_p                    = 2.0
+ref_p                    = 1.0
+compressibility          = 4.5e-5
+
+; Velocity generation
+gen_vel                  = no
+
+; Constraints
+constraints              = h-bonds
+constraint-algorithm     = lincs
+lincs-order              = 4
+lincs-iter               = 1
+
+; Periodic boundary conditions
+pbc                      = xyz

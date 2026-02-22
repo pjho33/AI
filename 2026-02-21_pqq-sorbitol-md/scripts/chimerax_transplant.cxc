@@ -1,0 +1,29 @@
+# ChimeraX script for PQQ+Ca transplant
+# Template: 4CVB (quinoprotein ADH, PQQ resname=PQQ, Ca resname=CA)
+# Strategy: align -> delete protein/solvent from #2 -> combine #1+#2 -> save
+
+# Open structures
+open receptor_af.pdb
+open 4CVB.pdb
+
+# Align 4CVB chain A onto receptor chain A
+matchmaker #2/A to #1/A
+
+# Keep only chain A from 4CVB (chain B has duplicate ligands)
+delete #2/B
+
+# Remove protein and solvent from 4CVB chain A, leaving only PQQ + Ca
+delete #2 & protein
+delete #2 & solvent
+
+# Remove unwanted ligands (ZN, CL, PPI) - keep only PQQ and CA
+delete #2 :ZN
+delete #2 :CL
+delete #2 :PPI
+
+# Now #2 contains only PQQ + Ca -> combine with receptor
+# This creates model #3
+combine #1 #2
+
+# Save combined model
+save receptor_PQQ_Ca.pdb models #3

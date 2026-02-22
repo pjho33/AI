@@ -1,0 +1,19 @@
+; DSO_GMX_OPLS.top created by acpype (v: 2023.10.27) on Sat Feb 21 23:51:36 2026
+
+; Include forcefield parameters
+#include "ffoplsaa.itp"
+
+; Include DSO_GMX.itp topology
+#include "DSO_GMX.itp"
+
+; Ligand position restraints
+#ifdef POSRES_LIG
+#include "posre_DSO.itp"
+#endif
+
+[ system ]
+ DSO
+
+[ molecules ]
+; Compound        nmols
+ DSO              1     

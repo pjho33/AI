@@ -1,0 +1,185 @@
+Remarks DSO_CNS.top created by acpype (v: 2023.10.27) on Sat Feb 21 23:51:36 2026
+
+set echo=false end
+
+autogenerate angles=True dihedrals=True end
+
+{ atomType  mass }
+MASS oh_     16.000
+MASS c3_     12.010
+MASS h1_      1.008
+MASS ho_      1.008
+
+RESIdue MOL
+
+GROUP
+
+{ atomName  atomType  Charge }
+ATOM O1    TYPE= oh_   CHARGE=  -0.5958 END
+ATOM O2    TYPE= oh_   CHARGE=  -0.5958 END
+ATOM O3    TYPE= oh_   CHARGE=  -0.6003 END
+ATOM O4    TYPE= oh_   CHARGE=  -0.6003 END
+ATOM O5    TYPE= oh_   CHARGE=  -0.5888 END
+ATOM O6    TYPE= oh_   CHARGE=  -0.5888 END
+ATOM C1    TYPE= c3_   CHARGE=   0.0966 END
+ATOM C2    TYPE= c3_   CHARGE=   0.0966 END
+ATOM C3    TYPE= c3_   CHARGE=   0.0726 END
+ATOM C4    TYPE= c3_   CHARGE=   0.0726 END
+ATOM C5    TYPE= c3_   CHARGE=   0.0969 END
+ATOM C6    TYPE= c3_   CHARGE=   0.0969 END
+ATOM H1    TYPE= h1_   CHARGE=   0.0987 END
+ATOM H2    TYPE= h1_   CHARGE=   0.0987 END
+ATOM H3    TYPE= h1_   CHARGE=   0.0642 END
+ATOM H4    TYPE= h1_   CHARGE=   0.0642 END
+ATOM H5    TYPE= h1_   CHARGE=   0.0567 END
+ATOM H6    TYPE= h1_   CHARGE=   0.0567 END
+ATOM H7    TYPE= h1_   CHARGE=   0.0567 END
+ATOM H8    TYPE= h1_   CHARGE=   0.0567 END
+ATOM H9    TYPE= ho_   CHARGE=   0.4225 END
+ATOM H10   TYPE= ho_   CHARGE=   0.4225 END
+ATOM H11   TYPE= ho_   CHARGE=   0.4140 END
+ATOM H12   TYPE= ho_   CHARGE=   0.4140 END
+ATOM H13   TYPE= ho_   CHARGE=   0.4060 END
+ATOM H14   TYPE= ho_   CHARGE=   0.4060 END
+
+{ Bonds: atomName1  atomName2 }
+BOND O1    H9   
+BOND O2    H10  
+BOND O3    H11  
+BOND O4    H12  
+BOND O5    H13  
+BOND O6    H14  
+BOND C1    H1   
+BOND C2    H2   
+BOND C3    H3   
+BOND C4    H4   
+BOND C5    H5   
+BOND C5    H6   
+BOND C6    H7   
+BOND C6    H8   
+BOND O1    C1   
+BOND O2    C2   
+BOND O3    C3   
+BOND O4    C4   
+BOND O5    C5   
+BOND O6    C6   
+BOND C1    C2   
+BOND C1    C3   
+BOND C2    C4   
+BOND C3    C5   
+BOND C4    C6   
+
+{ Angles: atomName1 atomName2 atomName3}
+ANGLe O1    C1    H1   
+ANGLe O2    C2    H2   
+ANGLe O3    C3    H3   
+ANGLe O4    C4    H4   
+ANGLe O5    C5    H5   
+ANGLe O5    C5    H6   
+ANGLe O6    C6    H7   
+ANGLe O6    C6    H8   
+ANGLe C1    O1    H9   
+ANGLe C1    C2    H2   
+ANGLe C1    C3    H3   
+ANGLe C2    O2    H10  
+ANGLe C2    C1    H1   
+ANGLe C2    C4    H4   
+ANGLe C3    O3    H11  
+ANGLe C3    C1    H1   
+ANGLe C3    C5    H5   
+ANGLe C3    C5    H6   
+ANGLe C4    O4    H12  
+ANGLe C4    C2    H2   
+ANGLe C4    C6    H7   
+ANGLe C4    C6    H8   
+ANGLe C5    O5    H13  
+ANGLe C5    C3    H3   
+ANGLe C6    O6    H14  
+ANGLe C6    C4    H4   
+ANGLe H5    C5    H6   
+ANGLe H7    C6    H8   
+ANGLe O1    C1    C2   
+ANGLe O1    C1    C3   
+ANGLe O2    C2    C1   
+ANGLe O2    C2    C4   
+ANGLe O3    C3    C1   
+ANGLe O3    C3    C5   
+ANGLe O4    C4    C2   
+ANGLe O4    C4    C6   
+ANGLe O5    C5    C3   
+ANGLe O6    C6    C4   
+ANGLe C1    C2    C4   
+ANGLe C1    C3    C5   
+ANGLe C2    C1    C3   
+ANGLe C2    C4    C6   
+
+{ Proper Dihedrals: name1 name2 name3 name4 }
+DIHEdral O1    C1    C2    H2   
+DIHEdral O1    C1    C3    H3   
+DIHEdral O2    C2    C1    H1   
+DIHEdral O2    C2    C4    H4   
+DIHEdral O3    C3    C1    H1   
+DIHEdral O3    C3    C5    H5   
+DIHEdral O3    C3    C5    H6   
+DIHEdral O4    C4    C2    H2   
+DIHEdral O4    C4    C6    H7   
+DIHEdral O4    C4    C6    H8   
+DIHEdral O5    C5    C3    H3   
+DIHEdral O6    C6    C4    H4   
+DIHEdral C1    C2    O2    H10  
+DIHEdral C1    C2    C4    H4   
+DIHEdral C1    C3    O3    H11  
+DIHEdral C1    C3    C5    H5   
+DIHEdral C1    C3    C5    H6   
+DIHEdral H9    O1    C1    C2   
+DIHEdral C2    C1    C3    H3   
+DIHEdral C2    C4    O4    H12  
+DIHEdral C2    C4    C6    H7   
+DIHEdral C2    C4    C6    H8   
+DIHEdral H9    O1    C1    C3   
+DIHEdral C3    C1    C2    H2   
+DIHEdral C3    C5    O5    H13  
+DIHEdral C4    C2    O2    H10  
+DIHEdral C4    C2    C1    H1   
+DIHEdral C4    C6    O6    H14  
+DIHEdral C5    C3    O3    H11  
+DIHEdral C5    C3    C1    H1   
+DIHEdral C6    C4    O4    H12  
+DIHEdral C6    C4    C2    H2   
+DIHEdral H9    O1    C1    H1   
+DIHEdral H1    C1    C2    H2   
+DIHEdral H1    C1    C3    H3   
+DIHEdral H2    C2    O2    H10  
+DIHEdral H2    C2    C4    H4   
+DIHEdral H3    C3    O3    H11  
+DIHEdral H3    C3    C5    H5   
+DIHEdral H3    C3    C5    H6   
+DIHEdral H4    C4    O4    H12  
+DIHEdral H4    C4    C6    H7   
+DIHEdral H4    C4    C6    H8   
+DIHEdral H5    C5    O5    H13  
+DIHEdral H6    C5    O5    H13  
+DIHEdral H7    C6    O6    H14  
+DIHEdral H8    C6    O6    H14  
+DIHEdral O1    C1    C2    O2   
+DIHEdral O1    C1    C2    C4   
+DIHEdral O1    C1    C3    O3   
+DIHEdral O1    C1    C3    C5   
+DIHEdral O2    C2    C1    C3   
+DIHEdral O2    C2    C4    O4   
+DIHEdral O2    C2    C4    C6   
+DIHEdral O3    C3    C1    C2   
+DIHEdral O3    C3    C5    O5   
+DIHEdral O4    C4    C2    C1   
+DIHEdral O4    C4    C6    O6   
+DIHEdral O5    C5    C3    C1   
+DIHEdral O6    C6    C4    C2   
+DIHEdral C1    C2    C4    C6   
+DIHEdral C2    C1    C3    C5   
+DIHEdral C3    C1    C2    C4   
+
+{ Improper Dihedrals: aName1 aName2 aName3 aName4 }
+
+END {RESIdue MOL}
+
+set echo=true end

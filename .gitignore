@@ -39,6 +39,33 @@ models/checkpoints/
 *.pkl
 *.joblib
 
+# GROMACS large binary files
+*.xtc
+*.trr
+*.edr
+*.tpr
+*.cpt
+\#*\#
+
+# ANTECHAMBER intermediate files
+ANTECHAMBER_*
+ATOMTYPE.INF
+sqm.in
+sqm.out
+sqm.pdb
+leap.log
+acpype.log
+*.frcmod
+*.inpcrd
+*.prmtop
+*.lib
+*.AC
+*.AC0
+*.pkl
+
+# GROMACS backup files
+*.bak
+
 .DS_Store
 .vscode/
 .idea/

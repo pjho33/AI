@@ -1,0 +1,15 @@
+[INFO   ] Starting gmx_MMPBSA v1.5.0.3
+[DEBUG  ] WDIR          : /home/pjho3/projects/AI/2026-02-22_pqq-sorbitol-md-phase3/gromacs_dso
+[DEBUG  ] AMBERHOME     : /home/pjho3/miniconda3/envs/Drug-MD
+[DEBUG  ] PYTHON EXE    : /home/pjho3/miniconda3/envs/Drug-MD/bin/python
+[DEBUG  ] PYTHON VERSION: 3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]
+[DEBUG  ] MPI           : /home/pjho3/miniconda3/envs/Drug-MD/bin/mpirun
+[DEBUG  ] ParmEd        : 4.3.0
+[DEBUG  ] OS PLATFORM   : Linux-6.8.0-100-generic-x86_64-with-glibc2.35
+[DEBUG  ] OS SYSTEM     : Linux
+[DEBUG  ] OS VERSION    : #100~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Mon Jan 19 17:10:19 UTC 
+[DEBUG  ] OS PROCESSOR  : x86_64
+
+[INFO   ] Command-line
+  gmx_MMPBSA --version
+

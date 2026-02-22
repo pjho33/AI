@@ -1,0 +1,41 @@
+Remarks LSO_CNS.par created by acpype (v: 2023.10.27) on Sun Feb 22 18:02:40 2026
+
+set echo=false end
+
+{ Bonds: atomType1 atomType2 kb r0 }
+BOND   oh_   ho_    535.5   0.9725
+BOND   c3_   h1_    344.2   1.0969
+BOND   oh_   c3_    285.1   1.4242
+BOND   c3_   c3_    228.9   1.5354
+
+{ Angles: aType1 aType2 aType3 kt t0 }
+ANGLe   oh_   c3_   h1_     56.3   110.38
+ANGLe   c3_   oh_   ho_     65.1   107.39
+ANGLe   c3_   c3_   h1_     43.3   109.59
+ANGLe   h1_   c3_   h1_     35.6   108.55
+ANGLe   oh_   c3_   c3_     76.8   109.66
+ANGLe   c3_   c3_   c3_     59.9   112.63
+
+{ Proper Dihedrals: aType1 aType2 aType3 aType4 kt period phase }
+DIHEdral   oh_   c3_   c3_   oh_  MULT 2   1.000    1     0.00
+                                           1.440    3     0.00
+DIHEdral   h1_   c3_   c3_   h1_           0.156    3     0.00
+DIHEdral   oh_   c3_   c3_   c3_           0.180    3     0.00
+DIHEdral   c3_   c3_   c3_   h1_           0.156    3     0.00
+DIHEdral   ho_   oh_   c3_   h1_           0.123    3     0.00
+DIHEdral   oh_   c3_   c3_   h1_  MULT 2   0.250    1     0.00
+                                           0.000    0     0.00
+DIHEdral   h1_   c3_   oh_   ho_           0.123    3     0.00
+DIHEdral   c3_   c3_   c3_   c3_           0.520    3     0.00
+DIHEdral   c3_   c3_   oh_   ho_           0.060    3     0.00
+DIHEdral   ho_   oh_   c3_   c3_           0.060    3     0.00
+
+{ Improper Dihedrals: aType1 aType2 aType3 aType4 kt period phase }
+
+{ Nonbonded: Type Emin sigma; (1-4): Emin/2 sigma }
+NONBonded   oh_    0.093000    3.242871    0.046500    3.242871
+NONBonded   c3_    0.107800    3.397710    0.053900    3.397710
+NONBonded   h1_    0.020800    2.421997    0.010400    2.421997
+NONBonded   ho_    0.004700    0.537925    0.002350    0.537925
+
+set echo=true end

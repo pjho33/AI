@@ -1,0 +1,23 @@
+# Example sequence - Gluconobacter oxydans SldA catalytic domain
+# This is a TEMPLATE - replace with actual sequence from UniProt
+#
+# UniProt: Q5FPE8 (full length)
+# Domain: Residues ~50-650 (catalytic domain, no TM)
+#
+# Steps to get real sequence:
+# 1. Go to https://www.uniprot.org/uniprotkb/Q5FPE8
+# 2. Download FASTA
+# 3. Remove residues 1-50 (signal + TM)
+# 4. Keep residues 50-650 (catalytic domain)
+# 5. Save as sequence.fasta
+
+>Gluconobacter_oxydans_SldA_catalytic_domain_EXAMPLE
+DPVTITGGSSGIGLAIARRLAAEGARVVVADRDPARLAEALAAAGVDRVLGVDVTDAAA
+LVAAAVAAGGRAAALVGAGGRVDVAVNNAGVAPVTPWDQAQQRWVDAAFAAAGPGDAAA
+LIVGSGPVGLLAAARGAADGVVNVVSSAAQRSPVGRLVQVDLSDAASIAAAIRAAGADV
+VGVDIVTSTGVFAGDAAAPVMSDGQQRWVDTTYAAAGGPGDAALIVGSGPIGLLTAVRG
+AADGVVNVASSAAQRSPVARLVQVDLSDAASIAAAIRAAGADVVGVDIVTSTGVFAGDA
+
+# NOTE: This is truncated example
+# Real sequence should be ~600 residues
+# Get complete sequence from UniProt Q5FPE8

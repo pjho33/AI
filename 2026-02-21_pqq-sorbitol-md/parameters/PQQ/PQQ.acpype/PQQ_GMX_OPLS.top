@@ -1,0 +1,19 @@
+; PQQ_GMX_OPLS.top created by acpype (v: 2023.10.27) on Sun Feb 22 14:24:13 2026
+
+; Include forcefield parameters
+#include "ffoplsaa.itp"
+
+; Include PQQ_GMX.itp topology
+#include "PQQ_GMX.itp"
+
+; Ligand position restraints
+#ifdef POSRES_LIG
+#include "posre_PQQ.itp"
+#endif
+
+[ system ]
+ PQQ
+
+[ molecules ]
+; Compound        nmols
+ PQQ              1     
