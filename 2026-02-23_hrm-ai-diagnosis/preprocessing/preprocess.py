@@ -1,9 +1,10 @@
 """
 HRM 전처리 파이프라인
-1. ASCII 파싱
-2. Wet Swallow 구간 자동 감지 & Cropping
-3. Min-Max Normalization (-10~300 mmHg)
-4. 4D Tensor 변환 (Batch, 1, Sensors, Time)
+- 파일 1개 = 삼킴 1회 = 샘플 1개
+- 첫 행(더미 0.0) 제거, 절대 타임스탬프 기반 겹치는 구간 제거
+1. ASCII 파싱 + 중복 제거
+2. Min-Max Normalization (-10~300 mmHg)
+3. Tensor 변환 (1, 36, TARGET_TIME) — 고정 길이 crop/pad
 """
 
 import numpy as np
@@ -19,70 +20,34 @@ import json
 # ─────────────────────────────────────────
 def parse_hrm_ascii(filepath):
     """
+    파일 1개 = 삼킴 1회 전체 기록
+    - 첫 행(더미 0.0) 제거
     Returns:
+        time      : (N,) 절대 타임스탬프 (초)
         pressure  : (N, 36) float32  [mmHg]
         impedance : (N, 18) float32
     """
     data = np.loadtxt(filepath, dtype=np.float32)
+    # 첫 행은 더미(col0=0.0) → 제거
+    data = data[1:]
+    time      = data[:, 0]
     pressure  = data[:, 1:37]
     impedance = data[:, 37:55]
-    return pressure, impedance
+    return time, pressure, impedance
 
 
-# ─────────────────────────────────────────
-# 2. Wet Swallow 자동 감지
-# ─────────────────────────────────────────
-def detect_swallows(pressure,
-                    mid_sensors=(10, 25),   # 식도 체부 센서 범위 (0-indexed)
-                    threshold=20.0,          # mmHg, 연하 감지 임계값
-                    min_gap_s=3.0,           # 연하 간 최소 간격 (초)
-                    pre_s=2.0,               # 연하 전 여유 (초)
-                    post_s=8.0,              # 연하 후 여유 (초)
-                    fs=100):
+def remove_overlap(time, pressure, impedance, prev_t_end):
     """
-    식도 체부 센서의 압력 피크를 기반으로 wet swallow 구간 감지.
-
-    Returns:
-        swallows : list of (start_idx, end_idx)
+    이전 파일의 끝 시간(prev_t_end) 이후 행만 유지
     """
-    # 식도 체부 센서 평균 압력
-    mid_pressure = pressure[:, mid_sensors[0]:mid_sensors[1]].max(axis=1)
-
-    # 간단한 smoothing (0.1초 이동평균)
-    kernel = int(0.1 * fs)
-    smoothed = np.convolve(mid_pressure, np.ones(kernel)/kernel, mode='same')
-
-    # threshold 초과 구간 감지
-    above = smoothed > threshold
-    min_gap = int(min_gap_s * fs)
-    pre  = int(pre_s  * fs)
-    post = int(post_s * fs)
-
-    # 연속 구간 찾기
-    swallows = []
-    in_swallow = False
-    start = 0
-    last_end = -min_gap
-
-    for i in range(len(above)):
-        if above[i] and not in_swallow:
-            in_swallow = True
-            start = i
-        elif not above[i] and in_swallow:
-            in_swallow = False
-            end = i
-            # 최소 간격 필터
-            if start - last_end >= min_gap:
-                s = max(0, start - pre)
-                e = min(len(pressure), end + post)
-                swallows.append((s, e))
-                last_end = end
-
-    return swallows
+    if prev_t_end is None:
+        return time, pressure, impedance
+    mask = time > prev_t_end
+    return time[mask], pressure[mask], impedance[mask]
 
 
 # ─────────────────────────────────────────
-# 3. Normalization
+# 2. Normalization
 # ─────────────────────────────────────────
 PRESSURE_MIN = -10.0
 PRESSURE_MAX = 300.0
@@ -94,85 +59,60 @@ def normalize_pressure(pressure):
 
 
 # ─────────────────────────────────────────
-# 4. Tensor 변환
+# 3. Tensor 변환
 # ─────────────────────────────────────────
-TARGET_TIME = 1000   # 10초 @ 100Hz (패딩/크롭 기준)
+TARGET_TIME = 6000   # 60초 @ 100Hz (파일 전체, 6001행 기준)
 N_SENSORS   = 36
 
 def to_tensor(pressure_norm, target_time=TARGET_TIME):
     """
     (T, 36) → (1, 36, target_time) 텐서
-    - T < target_time: zero-padding
-    - T > target_time: center crop
+    - T < target_time: zero-padding (오른쪽)
+    - T > target_time: 앞부분 crop
     """
     T = pressure_norm.shape[0]
     if T >= target_time:
-        start = (T - target_time) // 2
-        arr = pressure_norm[start:start + target_time, :]
+        arr = pressure_norm[:target_time, :]
     else:
         pad = target_time - T
-        pad_left  = pad // 2
-        pad_right = pad - pad_left
-        arr = np.pad(pressure_norm, ((pad_left, pad_right), (0, 0)), mode='constant')
+        arr = np.pad(pressure_norm, ((0, pad), (0, 0)), mode='constant')
 
     # (target_time, 36) → (1, 36, target_time)
-    tensor = arr.T[np.newaxis, :, :]   # (1, 36, target_time)
+    tensor = arr.T[np.newaxis, :, :]
     return tensor.astype(np.float32)
 
 
 # ─────────────────────────────────────────
-# 5. 전체 파이프라인
+# 4. 전체 파이프라인
 # ─────────────────────────────────────────
-def process_file(filepath, visualize=False, out_dir=None):
+def process_file(filepath, prev_t_end=None):
     """
-    단일 파일 전처리 → swallow별 텐서 리스트 반환
+    단일 파일 전처리 → 텐서 1개 반환
+    prev_t_end: 이전 파일의 마지막 타임스탬프 (겹침 제거용)
 
     Returns:
-        tensors : list of np.ndarray (1, 36, TARGET_TIME)
-        meta    : dict (filename, n_swallows, swallow_durations)
+        tensor    : np.ndarray (1, 36, TARGET_TIME)
+        t_end     : float (이 파일의 마지막 타임스탬프)
+        meta      : dict
     """
-    pressure, impedance = parse_hrm_ascii(filepath)
-    swallows = detect_swallows(pressure)
+    time, pressure, impedance = parse_hrm_ascii(filepath)
+    time, pressure, impedance = remove_overlap(time, pressure, impedance, prev_t_end)
 
-    tensors = []
-    durations = []
-
-    for i, (s, e) in enumerate(swallows):
-        seg = pressure[s:e, :]
-        seg_norm = normalize_pressure(seg)
-        tensor = to_tensor(seg_norm)
-        tensors.append(tensor)
-        durations.append((e - s) / 100.0)
-
-        if visualize and out_dir:
-            _plot_swallow(seg, i, filepath, out_dir, s, e)
+    pressure_norm = normalize_pressure(pressure)
+    tensor = to_tensor(pressure_norm)
 
     meta = {
-        "filename":         Path(filepath).name,
-        "total_timepoints": len(pressure),
-        "n_swallows":       len(swallows),
-        "swallow_durations_s": durations,
-        "tensor_shape":     list(tensors[0].shape) if tensors else None,
+        "filename":       Path(filepath).name,
+        "t_start":        float(time[0]),
+        "t_end":          float(time[-1]),
+        "timepoints":     len(pressure),
+        "duration_s":     float(time[-1] - time[0]),
+        "pressure_min":   float(pressure.min()),
+        "pressure_max":   float(pressure.max()),
+        "tensor_shape":   list(tensor.shape),
+        "overlap_removed_s": float(prev_t_end) if prev_t_end else 0.0,
     }
-    return tensors, meta
-
-
-def _plot_swallow(seg, idx, filepath, out_dir, s, e):
-    """개별 swallow 시각화"""
-    t = np.arange(len(seg)) * 0.01
-    fig, ax = plt.subplots(figsize=(10, 4))
-    im = ax.imshow(seg.T, aspect='auto', origin='upper',
-                   extent=[t[0], t[-1], 36.5, 0.5],
-                   cmap='jet', vmin=-10, vmax=150, interpolation='bilinear')
-    plt.colorbar(im, ax=ax, label='Pressure (mmHg)')
-    ax.set_xlabel('Time (s)')
-    ax.set_ylabel('Sensor')
-    ax.set_title(f"{Path(filepath).stem} — Swallow #{idx+1} "
-                 f"(idx {s}~{e}, {(e-s)/100:.1f}s)")
-    plt.tight_layout()
-    out = Path(out_dir) / f"{Path(filepath).stem}_swallow{idx+1:02d}.png"
-    plt.savefig(out, dpi=120, bbox_inches='tight')
-    plt.close()
+    return tensor, float(time[-1]), meta
 
 
 # ─────────────────────────────────────────
@@ -180,32 +120,52 @@ def _plot_swallow(seg, idx, filepath, out_dir, s, e):
 # ─────────────────────────────────────────
 if __name__ == "__main__":
     data_dir = Path(__file__).parent.parent / "data" / "raw"
-    out_dir  = Path(__file__).parent.parent / "data" / "figures" / "swallows"
     npy_dir  = Path(__file__).parent.parent / "data" / "processed"
-    out_dir.mkdir(parents=True, exist_ok=True)
     npy_dir.mkdir(parents=True, exist_ok=True)
 
-    all_meta = []
+    # 파일을 절대 타임스탬프 시작 시간 기준으로 정렬
+    files = sorted(data_dir.glob("*.txt"))
+    files_with_tstart = []
+    for fpath in files:
+        data = np.loadtxt(fpath, dtype=np.float32)
+        t_start = data[1, 0]   # 첫 행 더미 제외
+        files_with_tstart.append((t_start, fpath))
+    files_with_tstart.sort(key=lambda x: x[0])
 
-    for fpath in sorted(data_dir.glob("*.txt")):
-        tensors, meta = process_file(fpath, visualize=True, out_dir=out_dir)
+    print("파일 시간순 정렬:")
+    for ts, fp in files_with_tstart:
+        data = np.loadtxt(fp, dtype=np.float32)
+        te = data[-1, 0]
+        print(f"  {fp.name}: {ts:.2f}s ~ {te:.2f}s")
+
+    print()
+
+    all_tensors = []
+    all_meta    = []
+    prev_t_end  = None
+
+    for ts, fpath in files_with_tstart:
+        tensor, t_end, meta = process_file(fpath, prev_t_end)
+        all_tensors.append(tensor)
         all_meta.append(meta)
 
-        # 텐서 저장 (파일당 하나의 npy: shape = (n_swallows, 1, 36, TARGET_TIME))
-        if tensors:
-            arr = np.stack(tensors, axis=0)   # (N, 1, 36, 1000)
-            npy_path = npy_dir / (fpath.stem + "_tensors.npy")
-            np.save(npy_path, arr)
-
+        overlap = max(0, prev_t_end - ts) if prev_t_end else 0
         print(f"{meta['filename']:20s} | "
-              f"swallows: {meta['n_swallows']:2d} | "
-              f"durations: {[f'{d:.1f}s' for d in meta['swallow_durations_s']]}")
+              f"{meta['t_start']:.2f}~{meta['t_end']:.2f}s | "
+              f"rows: {meta['timepoints']:4d} | "
+              f"overlap removed: {overlap:.2f}s")
 
-    # 메타 저장
+        prev_t_end = t_end
+
+    # 전체 텐서 저장: (N, 1, 36, TARGET_TIME)
+    arr = np.stack(all_tensors, axis=0)
+    npy_path = npy_dir / "normal_tensors.npy"
+    np.save(npy_path, arr)
+
     meta_path = npy_dir / "metadata.json"
     with open(meta_path, "w") as f:
         json.dump(all_meta, f, indent=2)
 
-    print(f"\nTensors saved to : {npy_dir}")
-    print(f"Metadata saved to: {meta_path}")
-    print(f"Swallow figures  : {out_dir}")
+    print(f"\nTotal samples : {len(all_tensors)}")
+    print(f"Tensor shape  : {arr.shape}  (N, 1, sensors, time)")
+    print(f"Saved to      : {npy_path}")
