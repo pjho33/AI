@@ -66,6 +66,10 @@ acpype.log
 # GROMACS backup files
 *.bak
 
+# MDAnalysis offset files
+.*.xtc_offsets.npz
+.*.xtc_offsets.lock
+
 .DS_Store
 .vscode/
 .idea/

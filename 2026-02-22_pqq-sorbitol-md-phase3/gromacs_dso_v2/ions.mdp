@@ -1,0 +1,12 @@
+; ions.mdp - minimal mdp for genion
+integrator  = steep
+nsteps      = 0
+emtol       = 1000.0
+emstep      = 0.01
+nstlist     = 1
+cutoff-scheme = Verlet
+ns_type     = grid
+coulombtype = cutoff
+rcoulomb    = 1.0
+rvdw        = 1.0
+pbc         = xyz

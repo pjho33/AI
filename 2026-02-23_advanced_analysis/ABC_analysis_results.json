@@ -1,0 +1,74 @@
+{
+  "A_binding_stability": {
+    "LSO": {
+      "ligand_rmsd_mean": 1.322473106281633,
+      "ligand_rmsd_std": 0.4706204339678893,
+      "active_site_rmsd_mean": 6.236585689978055,
+      "active_site_rmsd_std": 1.9571038078780507,
+      "residence_time_percent": 100.0,
+      "contact_persistence_mean": 40.68131868131868,
+      "contact_persistence_std": 4.8751997996240535,
+      "n_active_site_residues": 713
+    },
+    "DSO": {
+      "ligand_rmsd_mean": 1.199093709548334,
+      "ligand_rmsd_std": 0.23691125040623034,
+      "active_site_rmsd_mean": 5.047294256595252,
+      "active_site_rmsd_std": 0.9882886776427118,
+      "residence_time_percent": 100.0,
+      "contact_persistence_mean": 21.967032967032967,
+      "contact_persistence_std": 7.7769808188817615,
+      "n_active_site_residues": 713
+    }
+  },
+  "B_reactive_geometry": {
+    "LSO": {
+      "sorb_react_atom": "O1",
+      "pqq_react_atom": "C5",
+      "reactive_distance_mean_A": 5.730459562093038,
+      "reactive_distance_std_A": 0.5566333708434368,
+      "reactive_distance_min_A": 3.4910417050371216,
+      "nac_dist_cutoff_A": 3.5,
+      "nac_angle_cutoff_deg": 120.0,
+      "nac_distance_freq_pct": 0.0999000999000999,
+      "nac_simultaneous_freq_pct": 0.0,
+      "nac_lifetime_mean_frames": 0.0,
+      "nac_lifetime_mean_ns": 0.0,
+      "nac_lifetime_max_frames": 0.0,
+      "used_specific_atoms": true
+    },
+    "DSO": {
+      "sorb_react_atom": "O2",
+      "pqq_react_atom": "C5",
+      "reactive_distance_mean_A": 7.444079032062038,
+      "reactive_distance_std_A": 2.1907350404508166,
+      "reactive_distance_min_A": 2.9731442201805964,
+      "nac_dist_cutoff_A": 3.5,
+      "nac_angle_cutoff_deg": 120.0,
+      "nac_distance_freq_pct": 1.6983016983016983,
+      "nac_simultaneous_freq_pct": 0.0,
+      "nac_lifetime_mean_frames": 0.0,
+      "nac_lifetime_mean_ns": 0.0,
+      "nac_lifetime_max_frames": 0.0,
+      "used_specific_atoms": true
+    }
+  },
+  "C_hbond_analysis": {
+    "LSO": {
+      "total_hbonds_detected": 562020,
+      "unique_hbond_pairs": 52,
+      "mean_occupancy_percent": 11.647967417198185,
+      "max_occupancy_percent": 86.3136863136863,
+      "mean_network_size": 6.056943056943057,
+      "max_network_size": 11.0
+    },
+    "DSO": {
+      "total_hbonds_detected": 559206,
+      "unique_hbond_pairs": 62,
+      "mean_occupancy_percent": 3.1742451097289806,
+      "max_occupancy_percent": 70.22977022977022,
+      "mean_network_size": 2.0649895178197064,
+      "max_network_size": 8.0
+    }
+  }
+}
