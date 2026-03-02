@@ -225,9 +225,70 @@ def compute_patient_metrics(mva_path, processed_dir):
             if p: xml_les_pressures.append(float(p))
     xml_les_p_mean = float(np.median(xml_les_pressures)) if xml_les_pressures else 5.0
 
-    # 처음 몇 개 swallow crop으로 채널별 이완 구간 최저값 계산
+    # 수축파가 가장 깊이 내려간 swallow 상위 3개 기준으로 LES 채널 결정
+    # → 체부 distal end가 가장 잘 드러난 삼킴 = LES 위치 참조에 최적
     sw_dir_tmp = Path(processed_dir) / 'swallows'
-    sw_files_tmp = sorted(sw_dir_tmp.glob('sw*.npy'))[:min(5, len(sw_episodes))]
+    sw_files_all = sorted(sw_dir_tmp.glob('sw*.npy'))
+    if sw_files_all:
+        onset_s = int(PRE_SEC * SR)
+        pre_s_q = max(0, onset_s - int(10 * SR))
+        pre_e_q = max(0, onset_s - int(3 * SR))
+        # 전체 swallow pre 평균 (외부 압박 필터용)
+        pre_base_q = np.nanmean(
+            [np.load(fp, mmap_mode='r')[pre_s_q:pre_e_q, :].mean(0)
+             for fp in sw_files_all], axis=0)
+        p_gastric_q = float(pre_base_q[35])
+        pthr_q = max(30.0, p_gastric_q + 15.0)
+
+        def _distal_of(fp):
+            c = np.load(fp, mmap_mode='r')
+            pk = c[onset_s:onset_s + int(10 * SR), :].max(axis=0)
+            chs = [ch for ch in range(20, 36)
+                   if pk[ch] > pthr_q and pk[ch] > pre_base_q[ch] + 15.0]
+            return max(chs) if chs else 20
+
+        distal_scores = [_distal_of(fp) for fp in sw_files_all]
+        # double swallow 제외 (간이 UES 탐지)
+        def _quick_double(fp):
+            c = np.load(fp, mmap_mode='r')
+            pre = c[:500, :]; rest = np.median(pre[:, 1:5], axis=0)
+            mad = np.median(np.abs(pre[:, 1:5] - rest), axis=0)
+            c0 = int(np.argmax(rest)) + 1
+            if c[:, c0].max() < rest[c0-1] + 15: return None, False
+            ca = max(1, c0-1); cb = c0; cc = min(4, c0+1)
+            def _t(ch): return rest[ch-1] + max(15, 2*mad[ch-1])
+            ia = np.flatnonzero(c[:, ca] > _t(ca))
+            ib = np.flatnonzero(c[:, cb] > _t(cb))
+            ic = np.flatnonzero(c[:, cc] > _t(cc))
+            if not (len(ia) and len(ib) and len(ic)): return None, False
+            SEARCH_LO = int(8 * SR); SEARCH_HI = int(22 * SR)
+            events = []; start = SEARCH_LO
+            while True:
+                ix = np.searchsorted(ia, start)
+                if ix >= len(ia): break
+                ja = ia[ix]
+                if ja >= SEARCH_HI: break  # 탐색 범위 초과
+                if ja >= len(c) - 10: break
+                iy = np.searchsorted(ib, ja)
+                if iy >= len(ib) or ib[iy] >= ja + 10: start = ja+1; continue
+                iz = np.searchsorted(ic, ib[iy])
+                if iz >= len(ic) or ic[iz] >= ja + 10: start = ja+1; continue
+                events.append(ja); start = ja + int(10*SR)
+                if np.searchsorted(ia, start) >= len(ia): break
+            if not events: return None, False
+            return events[0], len(events) >= 2
+        _ao_check = [_quick_double(fp) for fp in sw_files_all]
+        _valid_idx = [i for i, (ao, dbl) in enumerate(_ao_check)
+                      if ao is not None and not dbl]
+        if len(_valid_idx) >= 3:
+            top3_idx = sorted(_valid_idx,
+                              key=lambda i: distal_scores[i], reverse=True)[:3]
+        else:
+            top3_idx = sorted(range(len(sw_files_all)),
+                              key=lambda i: distal_scores[i], reverse=True)[:3]
+        sw_files_tmp = [sw_files_all[i] for i in top3_idx]
+    else:
+        sw_files_tmp = []
     ch_relax_mins = np.full((len(sw_files_tmp), 36), np.nan)
 
     for fi, fp_tmp in enumerate(sw_files_tmp):
@@ -307,14 +368,38 @@ def compute_patient_metrics(mva_path, processed_dir):
     else:
         ch_peak = np.zeros(36)
 
-    # 수축파 distal end: ch20~35 중 peak가 위내압(ch35)+15 mmHg 이상인 가장 높은 ch
-    # ch20 미만은 상부 식도이므로 LES 탐지에 사용하지 않음
-    peristalsis_threshold = max(30.0, p_gastric + 15.0)
-    peristalsis_chs = [ch for ch in range(20, 36) if ch_peak[ch] > peristalsis_threshold]
-    if peristalsis_chs:
-        distal_end_ch = max(peristalsis_chs)
-    else:
-        distal_end_ch = 32  # fallback: LES 기본 위치
+    # 체부 수축파 distal end: first_hit 순차 진행 마지막 채널 (crus 제외)
+    sw_s = onset; sw_e = onset + int(10 * SR)
+
+    MIN_DELAY = int(1.0 * SR)  # 수축파는 UES 이후 최소 1s 뒤에 도달
+    def _first_hit_m(ch):
+        times = []
+        for c in crops_tmp:
+            base = float(c[pre_s:pre_e, ch].mean())
+            hits = np.flatnonzero(c[sw_s:sw_e, ch] > base + 10.0)
+            valid = [h for h in hits if h >= MIN_DELAY]
+            if valid: times.append(sw_s + int(valid[0]))
+        return float(np.mean(times)) if times else None
+
+    SEARCH_START = 25  # skeletal/smooth 전환 이후 평활근 구간부터
+    fh_mean = {ch: _first_hit_m(ch) for ch in range(SEARCH_START, 35)}
+    TOLERANCE = 0.5 * SR
+    distal_end_ch = SEARCH_START
+    prev_t = fh_mean.get(SEARCH_START)
+    miss = 0
+    for ch in range(SEARCH_START + 1, 35):
+        t = fh_mean.get(ch)
+        if t is None:
+            miss += 1
+            if miss >= 2: break
+            continue
+        if prev_t is None or t >= prev_t - TOLERANCE:
+            distal_end_ch = ch; prev_t = t; miss = 0
+        else:
+            miss += 1
+            if miss >= 2: break
+    if distal_end_ch <= SEARCH_START:
+        distal_end_ch = 29  # fallback
 
     # LES 채널 선택 로직:
     # 조건1 (주): ch20~33 중 resting(삼킴 전후 안정 구간) 평균이 가장 높은 채널
@@ -343,27 +428,23 @@ def compute_patient_metrics(mva_path, processed_dir):
 
     ch_resting = (ch_pre_mean + ch_post_mean) / 2.0
 
-    # 호흡성 oscillation 점수: pre 구간에서 0.2~0.5Hz 대역 FFT 파워
-    osc_score = np.zeros(36)
+    # pre 구간 oscillation 진폭(peak-to-peak): crus 채널 검출용
+    # crus = 호흡성 oscillation 진폭이 큰 채널 → LES 후보에서 제외
+    osc_amp = np.zeros(36)
     if crops_tmp and pre_e > pre_s:
-        pre_len = pre_e - pre_s
-        freqs   = np.fft.rfftfreq(pre_len, d=1.0/SR)
-        band    = (freqs >= 0.2) & (freqs <= 0.5)
         for ch in range(20, 34):
-            seg = np.nanmean([c[pre_s:pre_e, ch] for c in crops_tmp], axis=0)
-            seg = seg - seg.mean()
-            pw  = np.abs(np.fft.rfft(seg)) ** 2
-            osc_score[ch] = pw[band].sum() if band.any() else 0.0
-        # 정규화 (0~1)
-        osc_max = osc_score[20:34].max()
-        if osc_max > 0:
-            osc_score = osc_score / osc_max
+            segs = [c[pre_s:pre_e, ch] for c in crops_tmp]
+            pp = np.mean([s.max() - s.min() for s in segs])
+            osc_amp[ch] = pp
+    # crus threshold: 탐색 범위 내 osc_amp 최솟값 + 10mmHg (상대 기준)
+    # 절대 기준(15mmHg) 대신 상대적으로 oscillation 작은 채널만 LES 후보
+    crus_threshold = None  # 아래 les_lo/les_hi 확정 후 계산
 
-    # 조건3: 수축파 끝(distal_end_ch) 이후 채널만 탐색
-    les_lo = max(distal_end_ch - 1, 20)
-    les_hi = 34  # ch33 이하
+    # LES: 체부 distal end 바로 아래 1~3개 채널, 최소 ch28
+    les_lo = max(distal_end_ch + 1, 28)
+    les_hi = min(les_lo + 4, 34)  # ch33까지만 (ch34 gastric 경계 제외)
     if les_lo >= les_hi:
-        les_lo = 28  # fallback
+        les_lo = 28; les_hi = 34
 
     # ── actual_onset 탐지 (HRM_DEFINITIONS.md Section 2 기준) ──────
     # 탐색 구간: onset-5s ~ onset+20s
@@ -373,83 +454,74 @@ def compute_patient_metrics(mva_path, processed_dir):
     # 연달아 삼킴: 5초(500샘플) 이내 두 번째 이벤트 탐지 → is_double=True → IRP 제외
     # 반환: (actual_onset_sample, is_double)
     def _find_actual_onset(crop):
-        # XML onset 무시 — crop 전체에서 UES 수축 탐지
-        # 채널별 threshold: ch2>40, ch3>60, ch4>90 (UES resting pressure 반영)
-        # 순서 조건: ch2→ch3→ch4 순서로 각 threshold 도달
-        # actual_onset = 조건 만족 창 내 ch2가 40mmHg 처음 넘는 샘플
-        # double = 첫 이벤트 후 10초 이내 두 번째 UES 이벤트 → IRP 제외
-        T2, T3, T4 = 40, 60, 90
-        UES_WIN = 10
-        DOUBLE_WIN = int(10 * SR)
-        seg = crop[:, 0:5]
+        """v1.2 Dynamic UES 탐지 (HRM_DEFINITIONS.md v1.2).
+        - pre resting 기반 c0 자동선택 (ch1~ch4)
+        - [c0-1, c0, c0+1] adaptive threshold 순차 상승 탐지
+        - start=10s: pre 구간 잔류 신호 오탐 방지
+        - double: 10s 이내 두 번째 이벤트 → IRP 제외"""
+        UW = 10; DW = int(10 * SR)
+        pre = crop[:500, :]
+        rest = np.median(pre[:, 1:5], axis=0)
+        mad  = np.median(np.abs(pre[:, 1:5] - rest), axis=0)
+        c0_idx = int(np.argmax(rest)); c0 = c0_idx + 1
+        if crop[:, c0].max() < rest[c0_idx] + 15:
+            return None, False
+        ca = max(1, c0 - 1); cb = c0; cc = min(4, c0 + 1)
+        def ch_thr(ch):
+            idx = ch - 1
+            return rest[idx] + max(15, 2 * mad[idx])
+        ia = np.flatnonzero(crop[:, ca] > ch_thr(ca))
+        ib = np.flatnonzero(crop[:, cb] > ch_thr(cb))
+        ic = np.flatnonzero(crop[:, cc] > ch_thr(cc))
+        if not (len(ia) and len(ib) and len(ic)):
+            return None, False
         events = []
-        idx = 0
-        while idx <= len(seg) - UES_WIN:
-            win = seg[idx:idx + UES_WIN, :]
-            above2 = np.where(win[:, 2] > T2)[0]
-            above3 = np.where(win[:, 3] > T3)[0]
-            above4 = np.where(win[:, 4] > T4)[0]
-            if (len(above2) > 0 and len(above3) > 0 and len(above4) > 0 and
-                    above2[0] <= above3[0] <= above4[0]):
-                ao = idx + above2[0]  # ch2가 T2 처음 넘는 샘플
-                events.append(ao)
-                # 첫 이벤트 후 10s 뒤부터 두 번째 탐색
-                idx = events[0] + DOUBLE_WIN
-            else:
-                idx += 1
-        if len(events) == 0:
-            return None, False  # 탐지 실패
-        is_double = len(events) >= 2
-        return events[0], is_double
+        start = int(10 * SR)
+        while True:
+            idxa = np.searchsorted(ia, start)
+            if idxa >= len(ia): break
+            ja = ia[idxa]
+            if ja >= len(crop) - UW: break
+            idxb = np.searchsorted(ib, ja)
+            if idxb >= len(ib) or ib[idxb] >= ja + UW:
+                start = ja + 1; continue
+            jb = ib[idxb]
+            idxc = np.searchsorted(ic, jb)
+            if idxc >= len(ic) or ic[idxc] >= ja + UW:
+                start = ja + 1; continue
+            events.append(ja)
+            start = ja + DW
+            if np.searchsorted(ia, start) >= len(ia): break
+        if not events:
+            return None, False
+        return events[0], len(events) >= 2
 
     actual_onsets_tmp = [_find_actual_onset(c) for c in crops_tmp] if crops_tmp else []
-    # ao_sample, is_double 분리 (None=탐지실패)
-    ao_samples_tmp  = [r[0] for r in actual_onsets_tmp]
-    ao_doubles_tmp  = [r[1] for r in actual_onsets_tmp]
-    valid_onsets = [ao for ao in ao_samples_tmp if ao is not None]
+    ao_samples_tmp = [r[0] for r in actual_onsets_tmp]
+    ao_doubles_tmp = [r[1] for r in actual_onsets_tmp]
 
-    # 이완 구간: actual_onset-1s ~ actual_onset+3s (actual_onset 기준)
-    if valid_onsets and crops_tmp:
-        relax_segs = []
-        for c, ao, is_dbl in zip(crops_tmp, ao_samples_tmp, ao_doubles_tmp):
-            if ao is None or is_dbl:
-                continue  # 탐지실패 또는 연달아 삼킴 제외
-            r_s = max(0, ao - int(1 * SR))
-            r_e = min(len(c), ao + int(3 * SR))
-            if r_e > r_s:
-                relax_segs.append(c[r_s:r_e, :].mean(axis=0))
-        ch_relax_mean = np.nanmean(relax_segs, axis=0) if relax_segs else np.zeros(36)
+    # ── LES v4: distal+1~distal+3 후보별 IRP 계산, 최솟값 채널 ──
+    les_cands = list(range(les_lo, les_hi))
+    ch_irp_cands = {}
+    for ch in les_cands:
+        irps = []
+        for c, ao, dbl in zip(crops_tmp, ao_samples_tmp, ao_doubles_tmp):
+            if ao is None or dbl: continue
+            irp_end = ao + int(10 * SR)
+            if irp_end > len(c): continue
+            if np.any(c[ao:irp_end, :].sum(axis=1) == 0): continue  # zero-pad 제외
+            irps.append(float(np.sort(c[ao:irp_end, ch])[:400].mean()))
+        ch_irp_cands[ch] = float(np.median(irps)) if irps else float('inf')
+
+    valid_irp_cands = {ch: v for ch, v in ch_irp_cands.items()
+                       if v < float('inf') and ch_pre_mean[ch] >= 5.0}
+    if valid_irp_cands:
+        best_les_ch = min(valid_irp_cands, key=valid_irp_cands.get)
+    elif ch_irp_cands and min(ch_irp_cands.values()) < float('inf'):
+        best_les_ch = min(ch_irp_cands, key=ch_irp_cands.get)
     else:
-        relax_s = onset - int(1 * SR)
-        relax_e = onset + int(3 * SR)
-        ch_relax_mean = (np.nanmean([c[relax_s:relax_e, :].mean(axis=0)
-                                     for c in crops_tmp], axis=0)
-                         if crops_tmp else np.zeros(36))
-
-    # LES 후보 조건:
-    #   (A) resting > gastric + 5 mmHg  → 진짜 괄약근 고압대
-    #   (B) relax_drop > 0              → 삼킴 시 실제로 이완됨 (대동맥 압박 채널 제외)
-    # 두 조건 모두 만족하는 채널 중 drop이 가장 큰 채널 = LES
-    relax_drop = ch_resting - ch_relax_mean   # 클수록 이완이 잘 됨
-
-    # LES 후보: resting > gastric+5 AND 이완폭 > 2 mmHg (대동맥 압박 채널 제외)
-    candidates = [ch for ch in range(les_lo, les_hi)
-                  if ch_resting[ch] > p_gastric + 5 and relax_drop[ch] > 2]
-
-    if candidates:
-        les_score = np.zeros(36)
-        for ch in candidates:
-            les_score[ch] = relax_drop[ch] + 0.2 * osc_score[ch]
-        best_les_ch = candidates[int(np.argmax([les_score[ch] for ch in candidates]))]
-    else:
-        # fallback1: drop > 0 이완 있는 채널 중 resting 가장 높은 것
-        fb1 = [ch for ch in range(les_lo, les_hi) if relax_drop[ch] > 0]
-        if fb1:
-            best_les_ch = fb1[int(np.argmax([ch_resting[ch] for ch in fb1]))]
-        else:
-            # fallback2: 범위 내 resting 가장 높은 채널 (정상 환자 대비)
-            best_les_ch = les_lo + int(np.argmax(ch_resting[les_lo:les_hi]))
-    les_candidate_weak = len(candidates) == 0
+        best_les_ch = les_lo
+    les_candidate_weak = (ch_irp_cands.get(best_les_ch, float('inf')) == float('inf'))
 
     les_chs  = [best_les_ch]
     les_loc  = ch_locs[best_les_ch]

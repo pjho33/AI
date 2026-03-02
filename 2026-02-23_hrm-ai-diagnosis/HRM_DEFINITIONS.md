@@ -1,6 +1,14 @@
 # HRM 분석 정의서 (UES / LES / IRP / DCI)
 
 > **최종 확정 기준** — `compute_hrm_metrics.py` 수정 전 반드시 확인
+>
+> | 버전 | 날짜 | 변경 내용 |
+> |------|------|-----------|
+> | v1.0 | 2026-02-25 | UES 탐지 초기 확정 (고정 ch2/3/4, 고정 threshold) |
+> | v1.1 | 2026-03-02 | searchsorted 벡터화, start=10s, ch0_onset 추가, dt QC |
+> | v1.2 | 2026-03-02 | Dynamic UES 중심 채널 자동선택 + 상대 threshold (실험 중) |
+>
+> **현재 compute_hrm_metrics.py 적용 버전: v1.1**
 
 ---
 
@@ -27,31 +35,32 @@
 - **UES 수축 시작 = LES 이완 시작** → ch2가 40mmHg를 처음 넘는 시점 = `actual_onset`
 - ch4는 UES 고압대의 핵심 채널로 resting pressure가 높아 threshold를 높게 설정
 
-### ✅ 확정 알고리즘 (2026-02-25)
+### ✅ 확정 알고리즘 (2026-03-02 업데이트)
 ```
-1. 탐색 구간: crop 전체 (XML onset 무시)
+1. 탐색 구간: sample 1000(10초) 이후부터 탐색
+   - pre=15s 구간 앞부분의 이전 삼킴 잔류 신호 오탐 방지
    - XML onset은 지시 시점일 뿐, 실제 삼킴 시점과 다를 수 있음
 
-2. 0.1s(10샘플) 슬라이딩 창 탐색:
-   창 내에서 아래 조건을 모두 만족하는 첫 번째 창 발견 시:
+2. searchsorted 기반 탐색 (완전 벡터화):
+   각 채널의 threshold 돌파 샘플 인덱스를 미리 계산 후:
+   - ch2 > 40mmHg 첫 샘플(j2) → 같은 0.1s 창 내에
+   - ch3 > 60mmHg 가 j2 이후 존재(j3) → 같은 창 내에
+   - ch4 > 90mmHg 가 j3 이후 존재
+   → 조건 만족: actual_onset(ch2_onset) = j2
 
-   조건 (채널별 threshold 차등 적용):
-     - ch2가 한 번이라도 40 mmHg 이상
-     - ch3가 한 번이라도 60 mmHg 이상  ← ch3 resting이 ch2보다 높음
-     - ch4가 한 번이라도 90 mmHg 이상  ← ch4 resting이 가장 높음
-     - 첫 도달 순서: ch2_first ≤ ch3_first ≤ ch4_first  (생리적 하강 순서)
+3. ch0_onset (시각화 참고용, IRP 계산에는 미사용):
+   - j2 기준 3s~1s 이전 구간에서 baseline = median
+   - thr = baseline + max(10, 3×MAD)
+   - j2 이전 1.5s 내 thr 첫 돌파 + 이후 0.2s 중 30% 이상 유지 → ch0_onset
+   - A군 전체 dt(ch0→ch2) 분포: median=0.45s, p5=0.0s, p95=0.92s
+   - QC 기준: 0.0 ≤ dt < 1.2s → ch0 신뢰, 범위 밖 → IRP에 ch2_onset 사용
 
-   → actual_onset = 해당 창 내에서 ch2가 40mmHg를 처음 넘는 샘플 위치
-     (= UES 수축 시작 = LES 이완 시작점)
+4. 조건 만족 없으면 → 탐지 실패 → IRP 계산 제외
 
-3. 조건 만족 없으면 → 탐지 실패 → IRP 계산 제외
+5. actual_onset + 10s > crop 끝 → IRP 계산 불가 → 제외
 
-4. actual_onset + 10s > crop 끝 → IRP 계산 불가 → 제외
-
-5. 연달아 삼킴 제외:
+6. 연달아 삼킴 제외:
    - 첫 이벤트 탐지 후 10s 이내 두 번째 UES 이벤트 → is_double=True → IRP 계산 제외
-   - (체부 수축 억제 발생 가능 → 해당 삼킴 IRP 신뢰 불가)
-   - 검사는 30초~1분 간격으로 시행하나 간혹 연달아 삼키는 경우 발생
 ```
 
 ### ⚠️ 주의
@@ -195,4 +204,80 @@ else (IRP ≤ 15):
 
 ---
 
+## 9. 분석 제외 환자 목록
+
+| 환자 ID | 제외 사유 | 확인일 |
+|---------|-----------|--------|
+| A22 | 카테터 꺾임 — UES 고압대(ch3/ch4)가 삼킴 시 오히려 하락하는 역전 패턴. 시각화 및 데이터 모두 확인. 분석 불가. | 2026-03-02 |
+
+> 코드 적용: `EXCLUDE = {"A22"}` — `_plot_ues.py`, `_stats.py`, `batch_pipeline.py` 동일 적용
+
+---
+
 *최종 업데이트: 2026-02-25 (UES 탐지 기준 확정)*
+
+---
+
+## [v1.2] UES 탐지 업그레이드 — Dynamic 중심 채널 + 상대 threshold (실험 중)
+
+> ⚠️ **현재 _plot_ues.py에만 적용 중 (검증 단계). compute_hrm_metrics.py는 v1.1 유지.**
+> v1.2 검증 완료 후 compute_hrm_metrics.py에 반영 예정.
+
+### 배경 및 동기
+
+A군 분석 결과, UES 고압대의 중심 채널이 환자/검사마다 다름이 확인됨:
+- ch4 중심: 422/629 swallows (67%) — 대부분
+- ch2 중심: 178/629 (28%) — A08, A20, A26, A30 등
+- ch1 중심:  21/629 (3%)  — A04 전체
+- A15: ch2(9개)/ch4(12개) swallow별로 혼재
+
+고정 채널(ch2/3/4) + 고정 threshold(40/60/90)는 카테터가 1채널만 이동해도 탐지 실패.
+
+### v1.2 알고리즘
+
+```
+Step 0) pre 구간 정의
+  - crop[:500, :] (처음 5초) → 각 채널 resting baseline & MAD 계산
+
+Step 1) UES 중심 채널(c0) 자동 선택
+  - ch1~ch4 중 pre resting(median) 가장 높은 채널 = c0
+  - 생리적 근거: UES 고압대는 resting pressure가 높음
+
+Step 2) QC — UES 신호 존재 확인
+  - crop 전체에서 c0 채널 peak < resting[c0] + 15mmHg → 탐지 실패
+  - (A17처럼 카테터가 UES 밖에 있는 경우 자동 제외)
+
+Step 3) 탐색 채널 3개 설정
+  - ca = max(1, c0-1), cb = c0, cc = min(4, c0+1)
+  - 위→아래 순서 (생리적 하강 방향)
+
+Step 4) 채널별 adaptive threshold
+  - thr(ch) = resting[ch] + max(15, 2 × MAD[ch])
+
+Step 5) 순차 상승 탐지 (searchsorted 벡터화)
+  - start = sample 1000 (10초) 이후부터 탐색
+  - 0.1s(10샘플) 창 내에서 ca → cb → cc 순서로 thr 돌파 확인
+  - 조건 만족 시 actual_onset = ca 첫 돌파 샘플
+
+Step 6) double swallow 처리 (v1.1과 동일)
+  - 첫 이벤트 후 10s 이내 두 번째 이벤트 → is_double=True → IRP 제외
+```
+
+### v1.1 → v1.2 변경 요약
+
+| 항목 | v1.1 | v1.2 |
+|------|------|------|
+| 탐색 채널 | 고정 ch2, ch3, ch4 | 자동 선택 [c0-1, c0, c0+1] |
+| threshold | 고정 40/60/90 mmHg | adaptive: resting + max(15, 2×MAD) |
+| UES QC | 없음 | peak-baseline < 15mmHg 시 실패 |
+| ch0_onset | 시각화 참고용 유지 | 동일 |
+
+### 롤백 방법 (v1.1 복원)
+`_plot_ues.py`의 `find_ao_fast()` 함수를 아래로 교체:
+```python
+T2, T3, T4 = 40, 60, 90; UW = 10; DW = int(10*SR)
+i2 = np.flatnonzero(crop[:,2]>T2)
+i3 = np.flatnonzero(crop[:,3]>T3)
+i4 = np.flatnonzero(crop[:,4]>T4)
+# ... searchsorted 탐색 (start=int(10*SR))
+```
